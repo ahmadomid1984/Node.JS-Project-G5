@@ -15,7 +15,7 @@ This project is a React website built with Node.js and MongoDB, designed for a c
 - **MongoDB:** NoSQL database for storing website data, such as user accounts and blog posts.
 - **Express.js:** Web application framework for Node.js used for building the backend API.
 - **Nodemailer:** Node.js module for sending emails.
-- **Bootstrap or Material-UI:** If a UI framework/library is used for styling and layout.
+- **Bootstrap or Material-UI:** UI framework/library is used for styling and layout.
 
 # Usage
 - **Accessing the Admin Area:** Navigate to /admin and log in with admin credentials to access the dashboard.
