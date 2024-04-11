@@ -25,6 +25,6 @@ API Access: External applications can retrieve blog posts data via API endpoints
 This website is designed with web accessibility in mind to ensure that all users can access and interact with its content effectively.
 
 # Contributors
-Ahmad Omid
-Shreya Khetani
-Aryan Mohammadi
+**Ahmad Omid** ([@ahmadomid1984])
+**Shreya Khetani** ([@shreyakhetani])
+**Aryan Mohammadi** ([@Aryan22000])
