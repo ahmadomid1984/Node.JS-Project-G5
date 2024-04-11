@@ -10,16 +10,19 @@ This project is a React website built with Node.js and MongoDB, designed for a c
 **Blog Integration:** The website includes a blog section where users can read articles about cars. Additionally, blog posts can be listed via API for external use.
 
 # Technologies Used
-**React:** Frontend framework for building the user interface.
+**React.js:** Frontend framework for building the user interface.
 **Node.js:** Backend runtime environment for handling server-side logic.
 **MongoDB:** NoSQL database for storing website data, such as user accounts and blog posts.
 **Express.js:** Web application framework for Node.js used for building the backend API.
 **Nodemailer:** Node.js module for sending emails.
+**Bootstrap or Material-UI:** If a UI framework/library is used for styling and layout.
+
 
 # Usage
 **Accessing the Admin Area:** Navigate to /admin and log in with admin credentials to access the dashboard.
 **Managing Blog Posts:** Admins can create, edit, and delete blog posts from the admin dashboard.
 **API Access:** External applications can retrieve blog posts data via API endpoints.
+**Web pages:** Users can access web pages to view all blog posts and other website content.
 
 # Accessibility
 This website is designed with web accessibility in mind to ensure that all users can access and interact with its content effectively.
