@@ -4,10 +4,10 @@
 This project is a React website built with Node.js and MongoDB, designed for a car retailer specializing in selling vehicles from well-known companies. It includes authentication functionality, email sending capabilities using Nodemailer, and an admin area for managing website content.
 
 # Features
-**Authentication:** Users can sign up, log in, and log out securely.
-**Admin Area:** Admins can access a dedicated dashboard for managing blog posts, user accounts, and other website content.
-**Email Sending:** Utilizes Nodemailer to send emails for various purposes, such as account verification and password reset.
-**Blog Integration:** The website includes a blog section where users can read articles about cars. Additionally, blog posts can be listed via API for external use.
+- **Authentication:** Users can sign up, log in, and log out securely.
+- **Admin Area:** Admins can access a dedicated dashboard for managing blog posts, user accounts, and other website content.
+- **Email Sending:** Utilizes Nodemailer to send emails for various purposes, such as account verification and password reset.
+- **Blog Integration:** The website includes a blog section where users can read articles about cars. Additionally, blog posts can be listed via API for external use.
 
 # Technologies Used
 - **React.js:** Frontend framework for building the user interface.
@@ -28,6 +28,6 @@ This project is a React website built with Node.js and MongoDB, designed for a c
 This website is designed with web accessibility in mind to ensure that all users can access and interact with its content effectively.
 
 # Contributors
-**Ahmad Omid** ([@ahmadomid1984])
-**Shreya Khetani** ([@shreyakhetani])
-**Aryan Mohammadi** ([@Aryan22000])
+- **Ahmad Omid** ([@ahmadomid1984])
+- **Shreya Khetani** ([@shreyakhetani])
+- **Aryan Mohammadi** ([@Aryan22000])
