@@ -28,6 +28,6 @@ This project is a React website built with Node.js and MongoDB, designed for a c
 This website is designed with web accessibility in mind to ensure that all users can access and interact with its content effectively.
 
 # Contributors
-- **Ahmad Omid** ([@ahmadomid1984])
-- **Shreya Khetani** ([@shreyakhetani])
-- **Aryan Mohammadi** ([@Aryan22000])
+- **[Ahmad Omid](https://github.com/ahmadomid1984)**
+- **[Shreya Khetani](https://github.com/shreyakhetani)**
+- **[Aryan Mohammadi](https://github.com/Aryan22000)**
