@@ -1,0 +1,29 @@
+body {
+  font-family: inrian serif;
+}
+
+h2 {
+  margin-left: 100px;
+  padding: 10px;
+}
+
+.col-md-4,
+.mb-3 {
+  display: flex;
+  justify-content: center;
+}
+
+.card-body {
+  background: #564C4C;
+  color: white !important;
+}
+
+.card-title {
+  display: flex;
+  justify-content: center;
+
+}
+
+a {
+  color: white !important;
+}
