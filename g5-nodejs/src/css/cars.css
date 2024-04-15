@@ -74,6 +74,7 @@
         justify-content: space-between; /* This ensures that the button stays at the bottom */
         width: 100%;
         border-radius: 5px;
+        text-align: center;
     }
 
     .carImage {
