@@ -1,0 +1,56 @@
+/* src/css/navBar.css */
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background-color: #404040;
+    box-shadow: 0 2px 4px rgba(247, 242, 242, 0.1);
+    }
+    
+    .navBar a {
+        text-decoration: none;
+        color: #ffffff;
+        margin: 0 1rem;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 1.2rem;
+    }
+    
+    .navBar-right {
+        display: flex;
+        align-items: center;
+    }
+    
+    .navItem {
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease;
+    }
+    
+    .navItem:hover {
+        color: #FF8E09; /* Change hover color as needed */
+    }
+    
+    /* Style for active or current page link */
+    .navItem-active {
+        color: #007bff;
+        font-weight: bold;
+    }
+    
+    /* Special styling for Sign-up and Login links */
+    .sign-up {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        margin-left: 0.5rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .sign-up:hover {
+        background-color: #0056b3;
+    }
+    
+    .login {
+        /* Optionally, make login less prominent if desired */
+    }
+    
