@@ -1,0 +1,36 @@
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h2 {
+  margin-left: 100px;
+  padding: 10px;
+}
+
+.col-md-4,
+.mb-3 {
+  display: flex;
+  justify-content: center;
+}
+
+.card-body {
+  background: #564C4C;
+  color: white !important;
+}
+
+.card-title {
+  margin-bottom: var(--bs-card-title-spacer-y);
+  color: var(--bs-card-title-color);
+  font-weight: bold;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+a {
+  color: white !important;
+  text-decoration: none !important;
+}
