@@ -1,0 +1,57 @@
+/* src/css/newReleased.css */
+.latestReleased {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.latestReleased .title {
+    text-align: left;
+    margin-left: 13%;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.latestCars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns for three cards */
+    gap: 1rem;
+    justify-content: center;
+    max-width: 1200px; /* Adjust this to manage overall width */
+    margin: 0 auto; /* Centers the grid horizontally */
+}
+
+.latestCar {
+    color: white;
+    background-color: #564C4C;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.carImage {
+    width: 100%; /* Full width of the card */
+    height: 200px; /* Fixed height for all images */
+    object-fit: cover; /* Ensures images cover their area without distorting */
+    margin-bottom: 2rem;
+}
+
+.viewDetails {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    color: #ffffff; /* Choose a color that matches your design */
+    font-size: 35px; /* Adjust the size as needed */
+    text-decoration: none; /* Remove underline from links */
+    transition: color 0.3s;
+    margin-right: 20px;
+    margin-top: -50px;
+    margin-bottom: 10px;
+}
+
+.viewDetails:hover {
+    color: #FF8E09; /* Darker shade for hover effect */
+}
