@@ -8,6 +8,7 @@ function App() {
     <div>
       <NewReleasedCars />
       <Footer />
+      <div className="copyRight"> &copy; 2024 Your Company Name</div>
     </div>
   );
 }
