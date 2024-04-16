@@ -26,31 +26,29 @@ const NewReleasedCars = () => {
   ];
 
   return (
-    <div>
+    <section className="latestReleased">
       <h2>New Released Cars</h2>
-      <Row className="newReleased">
+      <div className="cardContainer">
         {cars.map((car) => (
-          <div key={car.id} className="col-md-4 mb-3">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={car.image} alt={car.name} />
-              <Card.Body>
-                <Card.Title>{car.name}</Card.Title>
-                <Row>
-                  <Col>
-                    <Card.Text>Price: {car.price}</Card.Text>
-                  </Col>
-                  <Col xs="auto">
-                    <a href={`/cars/${car.id}`}>
-                      <span className="arrow">&#8594;</span> {/* Arrow icon */}
-                    </a>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
-          </div>
+          <Card style={{ width: "25rem" }} key={car.id}>
+            <Card.Img variant="top" src={car.image} alt={car.name} />
+            <Card.Body>
+              <Card.Title>{car.name}</Card.Title>
+              <Row>
+                <Col>
+                  <Card.Text>Price: {car.price}</Card.Text>
+                </Col>
+                <Col xs="auto">
+                  <a href={`/cars/${car.id}`}>
+                    <span className="arrow">&#8594;</span> {/* Arrow icon */}
+                  </a>
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
         ))}
-      </Row>
-    </div>
+      </div>
+    </section>
   );
 };
 
