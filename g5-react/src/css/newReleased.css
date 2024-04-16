@@ -1,0 +1,74 @@
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.latestReleased {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.card-text {
+  margin-top: 15px;
+}
+
+.card {
+
+  padding: 0 0 0.5rem 0;
+  background-color: #564C4C !important;
+  color: white;
+  position: relative;
+  display: flex;
+
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+
+}
+
+.latestReleased h2 {
+  margin-left: 110px;
+  padding: 10px;
+  text-align: left;
+  font-weight: 500;
+}
+
+
+.card-body {
+  background: #564C4C;
+  color: white !important;
+}
+
+p {
+  margin-top: 15px;
+}
+
+.card-title {
+  font-weight: bold;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  display: flex;
+  justify-content: center;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 35px;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #FF8E09;
+}
