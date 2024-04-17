@@ -1,10 +1,21 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the app takes at least the height of the viewport */
+}
+
+.content {
+  flex: 1; /* Grow to fill available space */
+}
+
 .footer {
   background: #404040;
-  display: flex;
-  justify-content: center;
   color: white;
   padding: 2rem;
+  width: 100%;
+  text-align: center; /* Center the content horizontally */
 }
+
 
 .row {
   width: 100%;

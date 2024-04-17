@@ -11,33 +11,39 @@ import ContactForm from "./contactForm";
 
 const ContactUs = () => {
   return (
-    <Container>
-      <Row className="contact">
-        <Col md={6} className="contact-container">
-          <div>
-            <div className="contact-item">
-              <FontAwesomeIcon icon={faMapMarkerAlt} />
-              <span class="txt1 p-b-20">Address</span>
-              <p>Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US</p>
+    <>
+      <div className="top-text">
+        <p className="text">Contact us with any question or inquiries or call 358-475-1111. 
+        We would be happy to answer your questions and set up a meeting with you to have a best experience with us.</p>
+      </div>
+      <Container>
+        <Row className="contact">
+          <Col md={6} className="contact-container">
+            <div>
+              <div className="contact-item">
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+                <span class="txt1 p-b-20">Address</span>
+                <p>Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US</p>
+              </div>
+              <div className="contact-item">
+                <FontAwesomeIcon icon={faPhone} />
+                <span class="txt1 p-b-20">Lets Talk</span>
+                <p>+358 12 345 6789 </p>
+              </div>
+              <div className="contact-item">
+                <FontAwesomeIcon icon={faEnvelope} />
+                <span class="txt1 p-b-20">General support</span>
+                <p>contact@example.com</p>
+              </div>
             </div>
-            <div className="contact-item">
-              <FontAwesomeIcon icon={faPhone} />
-              <span class="txt1 p-b-20">Lets Talk</span>
-              <p>+358 12 345 6789 </p>
-            </div>
-            <div className="contact-item">
-              <FontAwesomeIcon icon={faEnvelope} />
-              <span class="txt1 p-b-20">General support</span>
-              <p>contact@example.com</p>
-            </div>
-          </div>
-        </Col>
-        <Col md={6}>
-          {" "}
-          <ContactForm />
-        </Col>
-      </Row>
-    </Container>
+          </Col>
+          <Col md={6}>
+            {" "}
+            <ContactForm />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 
