@@ -1,5 +1,5 @@
 body {
-  background-color: #f1f1f1;
+  background-color: #6a604d !important;
 }
 
 .top-text {
@@ -12,7 +12,7 @@ body {
 
 .top-text .text {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: black;
+  color: white;
   font-size: 2rem;
   padding: 1rem;
   max-width: 65%; /* Adjust the width as needed */
