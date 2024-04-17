@@ -16,7 +16,7 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(firstName, lastName, phoneNumber,email, password, confirmPassword);
-    axios.post('', {
+    axios.post('http://localhost:3001/adminsInfo', {
       firstName, 
       lastName, 
       phoneNumber, 
