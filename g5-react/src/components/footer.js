@@ -66,7 +66,7 @@ const Footer = () => {
             <Button variant="link">
               <img
                 src="./images/send.png"
-                alt="Button Image"
+                alt="Button"
                 className="sendIcon"
               />
             </Button>
