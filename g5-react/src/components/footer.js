@@ -59,14 +59,14 @@ const Footer = () => {
             </a>
           </div>
         </Col>
-        <Col className="text-right">
+        <Col className="signup">
           <Form.Label>SIGN UP FOR UPDATES</Form.Label>
           <div className="input-with-button">
             <Form.Control type="text" placeholder="Enter your email" />
             <Button variant="link">
               <img
                 src="./images/send.png"
-                alt="Button Image"
+                alt="Button"
                 className="sendIcon"
               />
             </Button>
