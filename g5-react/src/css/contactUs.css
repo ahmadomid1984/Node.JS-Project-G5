@@ -1,3 +1,24 @@
+body {
+  background-color: #6a604d !important;
+}
+
+.top-text {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 40vh;
+  margin-bottom: -100px;
+}
+
+.top-text .text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: white;
+  font-size: 2rem;
+  padding: 1rem;
+  max-width: 65%; /* Adjust the width as needed */
+  text-align: center; 
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -7,6 +28,7 @@
 }
 
 .contact {
+  font-family: Georgia, 'Times New Roman', Times, serif;
   background: white;
   border: 1px solid #d1cfcf;
   width: 100%;
@@ -20,7 +42,6 @@ body:before {
   top: 0;
   left: 0;
   right: 0;
-  background: #666;
 }
 
 .contact-container {

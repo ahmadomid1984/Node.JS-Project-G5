@@ -1,0 +1,83 @@
+.aboutUs {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #333;
+    background-color: #f1f1f1;
+}
+
+.aboutUsHeader h1 {
+    color: #2a2a72;
+    font-size: 2.50rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.aboutUsHeader p {
+    font-size: 1.5rem;
+    color: #000000;
+    margin: 0 200px 0 200px;
+    margin-bottom: 30px;
+}
+
+.missionStatement {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-left: 5px solid #2a2a72;
+}
+
+.missionStatement h2 {
+    color: #2a2a72;
+}
+
+.missionStatement p {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.team {
+    margin-top: 60px;
+}
+
+.team h2 {
+    color: #2a2a72;
+    font-size: 2.50rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.teamMembers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.teamMember {
+    max-width: 300px;
+    text-align: center;
+    margin: 10px;
+}
+
+.teamMember img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #2a2a72;
+}
+
+.teamMember h3 {
+    margin-top: 10px;
+    color: #2a2a72;
+}
+
+.teamMember p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.missionBanner img {
+    width: 100%;  
+    height: auto; 
+    display: block;
+}
