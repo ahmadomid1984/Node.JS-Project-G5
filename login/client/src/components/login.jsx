@@ -21,7 +21,7 @@ function Login() {
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Login</button>
               </form>
-              <p className="text-center mt-3">Don't have an account? <Link to="/register">Register</Link></p>
+              <p className="text-center mt-3">Do not have an account? <Link to="/register">Register</Link></p>
             </div>
           </div>
         </div>
