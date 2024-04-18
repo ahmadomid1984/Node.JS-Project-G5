@@ -16,7 +16,11 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(firstName, lastName, phoneNumber,email, password, confirmPassword);
+    if (password !== confirmPassword) {
+      // Notify user that passwords do not match
+      alert("Passwords do not match");
+      return;
+    }
     axios.post('http://localhost:3001/register', {
       firstName, 
       lastName, 
@@ -24,10 +28,16 @@ function Register() {
       email, 
       password, 
       confirmPassword
-    }).then(result => {console.log(result)
-    navigate('/login');
     })
-    .catch(err => console.log(err));
+    .then(result => {
+      console.log(result);
+      navigate('/login');
+    })
+    .catch(err => {
+      console.error(err);
+      // Notify user about the registration error
+      alert("Registration failed. Please try again.");
+    });
   }
   return (  
     <div className="container">
