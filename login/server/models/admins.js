@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const adminsInfoSchema = new mongoose.Schema({
     firstName: String, 
     lastName : String, 
-    phoneNumber : String, 
+    phoneNumber : String,
+    email : String, 
     password : String, 
     confirmPassword : String
 

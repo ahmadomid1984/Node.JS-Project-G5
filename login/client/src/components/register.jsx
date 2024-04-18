@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import axios from 'axios'; 
+import { useNavigate } from 'react-router-dom';
 function Register() {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -9,20 +10,23 @@ function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState(); 
-
+  const navigate = useNavigate();
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(firstName, lastName, phoneNumber,email, password, confirmPassword);
-    axios.post('http://localhost:3001/adminsInfo', {
+    axios.post('http://localhost:3001/register', {
       firstName, 
       lastName, 
       phoneNumber, 
+      email, 
       password, 
       confirmPassword
-    }).then(result => console.log(result))
+    }).then(result => {console.log(result)
+    navigate('/login');
+    })
     .catch(err => console.log(err));
   }
   return (  
