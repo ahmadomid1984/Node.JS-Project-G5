@@ -22,7 +22,7 @@ function AboutUs() {
                     <div className="teamMember">
                         <img src="/images/CEO2.jpg" alt="CEO Name" />
                         <h3>John Doe, CEO</h3>
-                        <p>John has over 20 years of experience in the automotive industry and is a car enthusiast.</p>
+                        <p>John has over 20 years of experience in the automotive industry.</p>
                     </div>
                     <div className="teamMember">
                         <img src="/images/CTO2.jpg" alt="CTO Name" />
