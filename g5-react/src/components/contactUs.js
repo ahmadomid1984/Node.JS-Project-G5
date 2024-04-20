@@ -11,7 +11,7 @@ import ContactForm from "./contactForm";
 
 const ContactUs = () => {
   return (
-    <>
+    <div className="contact-us-page">
       <div className="top-text">
         <p className="text">Contact us with any question or inquiries or call 358-475-1111. 
         We would be happy to answer your questions and set up a meeting with you to have a best experience with us.</p>
@@ -43,7 +43,7 @@ const ContactUs = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

@@ -5,7 +5,6 @@ import Footer from './components/footer';
 import AboutUs from './components/aboutUs';
 import ContactUs from './components/contactUs';
 import Cars from './components/cars';
-import NewReleased from './components/newReleased';
 import "./App.css";
 
 function App() {
@@ -29,7 +28,6 @@ function Home() {
   return (
     <>
       <Cars />
-      <NewReleased />
     </>
   );
 }

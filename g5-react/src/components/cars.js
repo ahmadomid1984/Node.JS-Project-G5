@@ -4,28 +4,28 @@ import '../css/cars.css';
 
 const carData = {
     'BENZ': [
-        { model: 'Mercedes-Benz A-Class', detail: 'Luxury compact sedan with advanced technology.', image: '/images/card.jpg' },
-        { model: 'Mercedes-Benz C-Class', detail: 'Midsize luxury, performance and design.', image: '/images/card.jpg' },
-        { model: 'Mercedes-Benz E-Class', detail: 'Sophisticated luxury sedan with superior comfort.', image: '/images/card.jpg' },
-        { model: 'Mercedes-Benz S-Class', detail: 'The pinnacle of luxury and innovation.', image: '/images/card.jpg' },
-        { model: 'Mercedes-Benz GLE', detail: 'Versatile midsize SUV with intelligent systems.', image: '/images/card.jpg' },
-        { model: 'Mercedes-Benz GLS', detail: 'Full-size luxury SUV that seats seven.', image: '/images/card.jpg' },
+        { model: 'Mercedes-Benz A-Class', year: '2023', detail: 'Luxury compact sedan with advanced technology.', image: '/images/card.jpg', price: '30,000€' },
+        { model: 'Mercedes-Benz C-Class', year: '2023', detail: 'Midsize luxury, performance and design.', image: '/images/card.jpg', price: '30,000€' },
+        { model: 'Mercedes-Benz E-Class', year: '2023', detail: 'Sophisticated luxury sedan with superior comfort.', image: '/images/card.jpg', price: '30,000€' },
+        { model: 'Mercedes-Benz S-Class', year: '2023', detail: 'The pinnacle of luxury and innovation.', image: '/images/card.jpg', price: '30,000€' },
+        { model: 'Mercedes-Benz GLE', year: '2023', detail: 'Versatile midsize SUV with intelligent systems.', image: '/images/card.jpg', price: '30,000€' },
+        { model: 'Mercedes-Benz GLS', year: '2023', detail: 'Full-size luxury SUV that seats seven.', image: '/images/card.jpg', price: '30,000€' },
     ],
     'BMW': [
-        { model: 'BMW 3 Series', detail: 'Iconic sports sedan with dynamic capabilities.', image: '/images/bmw.jpg' },
-        { model: 'BMW 5 Series', detail: 'Balanced performance and luxury in a sedan.', image: '/images/bmw.jpg' },
-        { model: 'BMW X3', detail: 'Sporty, agile, and versatile SUV.', image: '/images/bmw.jpg' },
-        { model: 'BMW X5', detail: 'Robust yet luxurious family SUV.', image: '/images/bmw.jpg' },
-        { model: 'BMW i8', detail: 'Futuristic plug-in hybrid with exceptional performance.', image: '/images/bmw.jpg' },
-        { model: 'BMW M4', detail: 'High-performance sports car with aggressive styling.', image: '/images/bmw.jpg' },
+        { model: 'BMW 3 Series', year: '2023', detail: 'Iconic sports sedan with dynamic capabilities.', image: '/images/bmw.jpg', price: '30,000€' },
+        { model: 'BMW 5 Series', year: '2023', detail: 'Balanced performance and luxury in a sedan.', image: '/images/bmw.jpg', price: '30,000€' },
+        { model: 'BMW X3', year: '2023', detail: 'Sporty, agile, and versatile SUV.', image: '/images/bmw.jpg', price: '30,000€' },
+        { model: 'BMW X5', year: '2023', detail: 'Robust yet luxurious family SUV.', image: '/images/bmw.jpg', price: '30,000€' },
+        { model: 'BMW i8', year: '2023', detail: 'Futuristic plug-in hybrid with exceptional performance.', image: '/images/bmw.jpg', price: '30,000€' },
+        { model: 'BMW M4', year: '2023', detail: 'High-performance sports car with aggressive styling.', image: '/images/bmw.jpg', price: '30,000€' },
     ],
     'Toyota': [
-        { model: 'Toyota Camry', detail: 'Reliable, spacious, and comfortable sedan.', image: '/images/toyota.jpg' },
-        { model: 'Toyota Corolla', detail: 'Compact car known for its efficiency and durability.', image: '/images/toyota.jpg' },
-        { model: 'Toyota Supra', detail: 'Legendary sports car with cutting-edge technology.', image: '/images/toyota.jpg' },
-        { model: 'Toyota RAV4', detail: 'Compact SUV perfect for adventures.', image: '/images/toyota.jpg' },
-        { model: 'Toyota Highlander', detail: 'Mid-size SUV ideal for families.', image: '/images/toyota.jpg' },
-        { model: 'Toyota Yaris', detail: 'Economical compact car with modern features.', image: '/images/toyota.jpg' },
+        { model: 'Toyota Camry', year: '2023', detail: 'Reliable, spacious, and comfortable sedan.', image: '/images/toyota.jpg', price: '30,000€' },
+        { model: 'Toyota Corolla', year: '2023', detail: 'Compact car known for its efficiency and durability.', image: '/images/toyota.jpg', price: '30,000€' },
+        { model: 'Toyota Supra', year: '2023', detail: 'Legendary sports car with cutting-edge technology.', image: '/images/toyota.jpg', price: '30,000€' },
+        { model: 'Toyota RAV4', year: '2023', detail: 'Compact SUV perfect for adventures.', image: '/images/toyota.jpg', price: '30,000€' },
+        { model: 'Toyota Highlander', year: '2023', detail: 'Mid-size SUV ideal for families.', image: '/images/toyota.jpg', price: '30,000€' },
+        { model: 'Toyota Yaris', year: '2023', detail: 'Economical compact car with modern features.', image: '/images/toyota.jpg', price: '30,000€' },
     ],
 };
 
@@ -56,8 +56,8 @@ function Cars() {
                 {carData[selectedBrand].map((car, index) => (
                     <div key={index} className="carCard">
                         <img src={car.image} alt={`${car.model}`} className="carImage" />
-                        <h4>{car.model}</h4>
-                        <p className="carDetails">{car.detail}</p>
+                        <h4>{car.model} ({car.year})</h4>                        <p className="carDetails">{car.detail}</p>
+                        <p className="carPrice">{car.price}</p>
                         <button>More Info</button>
                     </div>
                 ))}

@@ -1,90 +1,82 @@
-.App {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure the app takes at least the height of the viewport */
-}
-
-.content {
-  flex: 1; /* Grow to fill available space */
-}
-
 .footer {
+  font-family: Georgia, 'Times New Roman', Times, serif;
   background: #404040;
   color: white;
   padding: 2rem;
-  width: 100%;
-  text-align: center; /* Center the content horizontally */
+  display: flex;
+  flex-direction: column;
 }
 
-
-.row {
-  width: 100%;
+.footerContent, .map-and-address {
+  text-align: left;
+  flex: 0 0 50%; /* Allows each side to take up to 50% of the row */
 }
 
 .footerContent {
-  text-align: left;
-  margin-bottom: 1rem;
-  max-width: 250px;
-
+  max-width: 40% !important;
 }
 
-button img {
-  width: 30px;
-  height: 30px;
-  margin: 2px;
-  margin-bottom: 10px;
+.footerContent .company,
+.footerContent .contactUs {
+  font-size: 1.5rem;
+  color: peru;
+  font-weight: bold;
 }
 
+.footerContent .companyContent,
+.footerContent .phone,
+.footerContent .email,
+.footerContent .workHours {
+  font-size: 1.2rem;
+}
+
+.map-and-address {
+  max-width: 30% !important;
+  text-align: right;
+}
+
+.map-and-address .address {
+  text-align: center;
+}
+
+.map-and-address .address .addressWord {
+  font-size: 1.2rem;
+  color: peru;
+  font-weight: bold;
+}
+
+.map-and-address .address .new-address {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.map-iframe {
+  width: 100%;
+  height: 320px;
+  border: 0;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px !important;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
 
 .icon a {
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
+  width: 60px;
+  height: 60px;
   color: #fff;
   background-color: #191919d1;
-  border-radius: 30%;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-}
-
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-
-}
-
-.icon {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-
-.input-with-button {
-  position: relative;
-  width: 60%;
-}
-
-.input-with-button button {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-
-}
-
-.sendIcon {
-  margin-top: 10px;
-}
-
-.form-label {
-  margin-bottom: 1rem !important;
-}
-
-.signup {
-  text-align: left;
+  font-size: 1.5rem; /* Adjust this value to increase the size of the icons */
 }

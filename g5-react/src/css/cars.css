@@ -108,6 +108,11 @@
     margin-bottom: auto; /* Pushes anything after it (like the button) to the bottom */
 }
 
+.carPrice {
+    color: white;
+    font-size: 1.2rem;
+}
+
 .carGrid button {
     padding: 4px 40px;
     background-color: rgba(63, 53, 48, 0.832);
