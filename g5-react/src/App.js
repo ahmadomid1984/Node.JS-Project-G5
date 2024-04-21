@@ -40,30 +40,3 @@ function Home() {
 
 export default App;
 
-// const ProductList = () => {
-//   const [products, setProducts] = useState([]);
-
-//   useEffect(() => {
-//     fetch("/products")
-//       .then(response => response.json())
-//       .then(data => {
-//         setProducts(data);
-//       })
-//       .catch(error => {
-//         console.error("Error fetching products:", error);
-//       });
-//   }, []);
-
-//   return (
-//     <div>
-//       {products.map((product, i) => (
-//         <div key={i}>
-//           <h3>{product.name}</h3>
-//           <p>{product.description}</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default ProductList;
