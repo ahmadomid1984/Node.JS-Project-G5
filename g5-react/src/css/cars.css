@@ -21,7 +21,7 @@
 .carTabs {
     display: flex;
     margin-bottom: 1rem;
-    background-color: #404040;
+    background-color: #342929;
     padding: 3rem;
     padding-left: 15rem;
 }
@@ -30,7 +30,7 @@
     padding: 0.5rem 1rem;
     margin: 0 0.05rem -3rem;
     border: none;
-    background-color: #8D8C8C;
+    background-color: #404040;
     cursor: pointer;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1.2rem;
@@ -66,7 +66,7 @@
 .carCard {
     border: 1px solid #ccc;
     padding: 0 0 0.5rem 0;
-    background-color: #564C4C;
+    background-color: #342929;
     color: white;
     position: relative;
     display: flex;

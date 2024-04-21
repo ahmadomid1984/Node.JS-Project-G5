@@ -1,6 +1,9 @@
-.about-us-page .aboutUsHeader {
+.about-us-page {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: #f1f1f1; /* Adjust this color to match the desired background */
+    background-color: #f1f1f1;
+}
+
+.about-us-page .aboutUsHeader {
     padding-top: 20px; /* Adjust spacing to control the distance below the navbar */
     padding-bottom: 20px;
     }
@@ -40,7 +43,6 @@
 }
 
 .team {
-    font-family: Georgia, 'Times New Roman', Times, serif;
     margin-top: 60px;
 }
 

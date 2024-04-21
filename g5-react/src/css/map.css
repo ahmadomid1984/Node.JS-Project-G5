@@ -1,0 +1,32 @@
+.body-content {
+    background-color: #1f151ad1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 5rem;
+}
+
+.map-and-address iframe {
+    width: 80%;
+    height: 450px;
+    border: 2px solid #ccc; 
+    border-radius: 8px; 
+    margin-top: 2rem;
+}
+
+.contact-info .companyContent,
+.contact-info .phone,
+.contact-info .email,
+.contact-info .workHours, 
+.contact-info .new-address {
+    font-size: 1.2rem;
+    color: white;
+    text-align: left;
+}
+
+.contact-info .company,
+.contact-info .contactUs {
+    font-size: 1.5rem;
+    color: peru;
+    font-weight: bold;
+    text-align: left;
+}
+
