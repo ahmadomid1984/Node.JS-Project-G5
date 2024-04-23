@@ -1,0 +1,97 @@
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #007bff; /* Primary blue, adjust if needed */
+}
+
+.dashboard-content {
+    width: 80%; /* Adjust width to fit content */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow for depth */
+}
+
+.dashboard-header {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-bottom: 20px; /* space below the header */
+    color: #333; /* dark grey for text */
+    font-size: 4rem;
+}
+
+/* Table styles */
+.table {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 100%;
+    margin-top: 20px; /* space above the table */
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    border: 1px solid #ccc; /* light grey border for cells */
+    text-align: left;
+}
+
+.table th {
+    background-color: #f8f9fa; /* light grey background for headers */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* zebra striping for rows */
+}
+
+/* Centering text in table headers and cells */
+.table th, .table td {
+    text-align: center; /* Centers the text horizontally */
+    vertical-align: middle; /* Centers the text vertically */
+    padding: 12px; /* Adjust padding as needed */
+}
+
+/* Align summary text to the left */
+.table td.summary {
+    text-align: left;
+}
+
+/* Table cell styles for actions */
+.table td.actions {
+    white-space: nowrap; /* Prevents wrapping to ensure inline display */
+}
+
+/* Button Styles */
+.btn {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-success:hover, .btn-danger:hover {
+    opacity: 0.85; /* subtle hover effect */
+}
+
+/* Aligning buttons inline */
+.btn {
+    display: inline-block; /* Ensures buttons align inline */
+    margin-right: 5px; /* Adds a small space between buttons */
+}
+
+/* Remove margin from the last button to clean up spacing */
+.btn:last-child {
+    margin-right: 0;
+}
