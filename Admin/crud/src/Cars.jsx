@@ -47,6 +47,7 @@ function Cars () {
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Summary</th>
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -60,10 +61,11 @@ function Cars () {
                                 <td>{car.price}</td>
                                 <td>{car.available_count}</td>
                                 <td className="summary">{car.summary}</td>
+                                <td>{car.description}</td>
                                 <td className="actions">
+                                    <Link to={`/features/${car._id}`} className="btn btn-info">Features</Link>
                                     <Link to={`/update/${car._id}`} className="btn btn-success">Edit</Link>
-                                    <button className="btn btn-danger"
-                                    onClick={(e) => handleDelete(car._id)}>Delete</button>
+                                    <button className="btn btn-danger" onClick={() => handleDelete(car._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

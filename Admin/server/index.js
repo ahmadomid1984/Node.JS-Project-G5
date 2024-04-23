@@ -48,18 +48,25 @@ const dbURI =
     // Update the car data
     app.put("/updateCar/:id", (req, res) => {
         const id = req.params.id;
-        CarModel.findByIdAndUpdate({_id:id}, {
-            cars_id: req.body.cars_id, 
-            car_name: req.body.car_name, 
-            brand: req.body.brand, 
-            releasedDate: req.body.releasedDate, 
-            price: req.body.price, 
-            available_count: req.body.available_count, 
-            summary: req.body.summary})
+        CarModel.findByIdAndUpdate(
+            {_id: id}, 
+            {$set: {
+                cars_id: req.body.cars_id, 
+                car_name: req.body.car_name, 
+                brand: req.body.brand, 
+                releasedDate: req.body.releasedDate, 
+                price: req.body.price, 
+                available_count: req.body.available_count, 
+                summary: req.body.summary,
+                description: req.body.description,
+                features: req.body.features  // Make sure this matches your schema if features is a nested object
+            }},
+            { new: true }  // This option instructs Mongoose to return the updated version of the document.
+        )
         .then(car => res.json(car))
         .catch(err => res.status(400).json('Error: ' + err));
     })
-
+    
     
     // Delete the car data
     app.delete("/deleteCar/:id", (req, res) => {

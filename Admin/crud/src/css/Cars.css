@@ -19,7 +19,8 @@
     text-align: center;
     margin-bottom: 20px; /* space below the header */
     color: #333; /* dark grey for text */
-    font-size: 4rem;
+    font-size: 4rem !important;
+    font-weight: bold;
 }
 
 /* Table styles */
@@ -33,7 +34,11 @@
 .table th, .table td {
     padding: 12px;
     border: 1px solid #ccc; /* light grey border for cells */
-    text-align: left;
+    text-align: center !important;
+}
+
+.table .summary {
+    text-align: left !important;
 }
 
 .table th {
@@ -60,6 +65,11 @@
 .table td.actions {
     white-space: nowrap; /* Prevents wrapping to ensure inline display */
 }
+
+.table td:first-child {
+    width: 4% !important; /* adjust width of the ID column */
+}
+
 
 /* Button Styles */
 .btn {
@@ -94,4 +104,9 @@
 /* Remove margin from the last button to clean up spacing */
 .btn:last-child {
     margin-right: 0;
+}
+
+.btn-info {
+    background-color: rgb(25, 56, 124);
+    color: white;
 }
