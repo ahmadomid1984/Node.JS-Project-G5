@@ -73,7 +73,7 @@ function UpdateCar() {
         })
         .then(result => {
             console.log(result);
-            navigate('/');
+            navigate('/cars');
             setError("");
         })
         .catch(err => {
@@ -131,7 +131,7 @@ function UpdateCar() {
                     {error && <p className="text-danger">{error}</p>}
                     <div className="update-btn-container">
                         <button className="btn btn-success">Update</button>
-                        <Link to="/" className="btn btn-secondary">Back to Cars List</Link>
+                        <Link to="/cars" className="btn btn-secondary">Back to Cars List</Link>
                     </div>
                 </form>
             </div>

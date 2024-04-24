@@ -36,7 +36,7 @@ function Features() {
                         </tbody>
                     </table>
                 )}
-                <Link to="/" className="link">Back to Cars List</Link>
+                <Link to="/cars" className="link">Back to Cars List</Link>
             </div>
         </div>
     );

@@ -1,11 +1,11 @@
 .form-container {
     display: flex;
     justify-content: space-between;
-    gap: 20px;  /* Ensures space between the two tables */
+    gap: 10px;  /* Adjusted to ensure space between the two wider tables */
 }
 
 .table-responsive {
-    width: 50%; /* Adjusts each table to take nearly half the form's width */
+    width: 60%; /* Adjusted to make each table wider */
 }
 
 @media (max-width: 768px) {
@@ -34,4 +34,9 @@
 
 .btn-container {
     text-align: center;
+}
+
+.wide-form-container {
+    width: 70%; /* Adjust as necessary */
+    margin: 0 auto; /* Keeps it centered */
 }
