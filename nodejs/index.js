@@ -82,10 +82,6 @@ const dbURI =
     console.log(err);
   });
 
-
-
-
-
   app.get("/cars", async (req, res) => {
     try {
       const result = await cars.find();
@@ -94,7 +90,3 @@ const dbURI =
       console.log(error);
     }
   });
-
-  
-
-
