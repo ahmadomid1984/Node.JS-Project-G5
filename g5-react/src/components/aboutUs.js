@@ -3,7 +3,7 @@ import '../css/aboutUs.css';  // Ensure this is the correct path to your CSS fil
 
 function AboutUs() {
     return (
-        <div className="aboutUs">
+        <div className="about-us-page">
             <section className="aboutUsHeader">
                 <h1>About Our Company</h1>
                 <p>Our company is a leading digital marketplace and solutions provider for the automotive industry that connects car shoppers with sellers. Launched in 2024 and headquartered in Hämeenlinna, the Company empowers shoppers with the data, resources and digital tools needed to make informed buying decisions and seamlessly connect with automotive retailers. In a rapidly changing market, our company enables dealerships and OEMs with innovative technical solutions and data-driven intelligence to better reach and influence ready-to-buy shoppers, increase inventory turn and gain market share. Recently, our company acquired Dealer Inspire®, an innovative technology company building solutions that future-proof dealerships with more efficient operations, a faster and easier car buying process, and connected digital experiences that sell and service more vehicles. We are passionate about cars and aim to deliver the best experience for car enthusiasts.</p>
@@ -22,7 +22,7 @@ function AboutUs() {
                     <div className="teamMember">
                         <img src="/images/CEO2.jpg" alt="CEO Name" />
                         <h3>John Doe, CEO</h3>
-                        <p>John has over 20 years of experience in the automotive industry and is a car enthusiast.</p>
+                        <p>John has over 20 years of experience in the automotive industry.</p>
                     </div>
                     <div className="teamMember">
                         <img src="/images/CTO2.jpg" alt="CTO Name" />

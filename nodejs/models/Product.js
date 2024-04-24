@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema({
   },
   available_count: {
     type: Number,
-   
+  
   },
   updatedDate: {
     type: Date,

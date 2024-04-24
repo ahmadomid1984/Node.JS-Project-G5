@@ -1,22 +1,22 @@
-body {
-  background-color: #6a604d !important;
+.contact-us-page {
+  background-color: #46333d;
 }
 
-.top-text {
+.contact-us-page .top-text {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   height: 40vh;
   margin-bottom: -100px;
 }
 
-.top-text .text {
+.contact-us-page .top-text .text {
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: white;
   font-size: 2rem;
   padding: 1rem;
-  max-width: 65%; /* Adjust the width as needed */
-  text-align: center; 
+  max-width: 65%;
+  text-align: center;
 }
 
 .container {
