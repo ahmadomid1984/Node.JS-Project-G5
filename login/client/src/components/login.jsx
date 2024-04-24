@@ -11,12 +11,12 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email, password);
-        axios.post('http://localhost:3001/login', { 
+        axios.post('http://localhost:5000/login', { 
           email,
           password
         }).then(result => {console.log(result)
             if (result.data === "success") {
-                navigate('/AdminPanel');
+                navigate('/cars');
             }
         })
         .catch(err => console.log(err));

@@ -21,7 +21,7 @@ function Register() {
       alert("Passwords do not match");
       return;
     }
-    axios.post('http://localhost:3001/register', {
+    axios.post('http://localhost:5000/register', {
       firstName, 
       lastName, 
       phoneNumber, 

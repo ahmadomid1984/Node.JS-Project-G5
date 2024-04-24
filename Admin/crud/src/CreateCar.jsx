@@ -62,7 +62,7 @@ function CreateCar() {
 
     return (
         <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
-            <div className="w-50 bg-white rounded p-3">
+            <div className="wide-form-container bg-white rounded p-3">
                 <form onSubmit={handleSubmit}>
                     <h2 className="addCar">Add Car</h2>
                     <div className="form-container">

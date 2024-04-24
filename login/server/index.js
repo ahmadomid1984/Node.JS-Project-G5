@@ -13,13 +13,13 @@ app.use(cors());
 const dbURI =   "mongodb+srv://" +  process.env.DBUSERNAME + ":" + process.env.DBPASSWORD + "@" + process.env.CLUSTOR + ".mongodb.net/" + process.env.DB + "?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
-  .connect(dbURI)
-  .then(() => {
+.connect(dbURI)
+.then(() => {
     console.log("MongoDB Atlas connected");
-    const PORT = process.env.PORT || 3001;
+    const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => console.log("Server is running on port " + PORT));
-  })
-  .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
+})
+.catch(err => console.error('Error connecting to MongoDB Atlas:', err));
 
 app.post('/register', (req, res) => {
     AdminsInfoModel.create(req.body)
