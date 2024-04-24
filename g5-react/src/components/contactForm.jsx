@@ -10,7 +10,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/submit-form', {
+      await axios.post('http://localhost:5000/contact-us', {
         name: Name,
         email: Email,
         message: MESSAGE

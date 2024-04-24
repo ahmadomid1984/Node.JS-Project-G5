@@ -37,7 +37,7 @@ mongoose
         pass: process.env.EMAIL_PASS,
       },
     });
-    
+
     app.get("/products", async (req, res) => {
       try {
         const result = await Product.find();
@@ -48,7 +48,7 @@ mongoose
     });
   
 
-    app.post("/submit-form", async (req, res) => {
+    app.post("/contact-us", async (req, res) => {
       const { name, email, message } = req.body;
       console.log("Received form data:");
       console.log("Name:", name);
