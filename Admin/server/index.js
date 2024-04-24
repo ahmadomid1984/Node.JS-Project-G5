@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require("dotenv").config();
 const CarModel = require("./models/Cars");
+const AdminsInfoModel = require("./models/admins");
 
 const app = express()
 app.use(cors())
@@ -83,3 +84,27 @@ const dbURI =
         .then(cars => res.json(cars))
         .catch(err => res.status(400).json('Error: ' + err));
         })
+
+    // Aryan Side
+    app.post('/register', (req, res) => {
+        AdminsInfoModel.create(req.body)
+            .then(AdminsInfo => res.json(AdminsInfo))
+            .catch(err => res.status(400).json('Error:' + err));
+    });
+    
+    app.post('/login', (req, res) => {
+        const { email, password } = req.body;
+        AdminsInfoModel.findOne({ email: email })
+            .then(user => {
+                if (user) {
+                    if (user.password === password) {
+                        res.json("success");
+                    } else {
+                        res.json("wrong password");
+                    }
+                } else {
+                    res.json("user not found");
+                }
+            });
+    });
+    

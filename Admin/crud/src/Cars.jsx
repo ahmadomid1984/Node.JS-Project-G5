@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './css/Cars.css';
-
 
 function Cars () {
     const [cars, setCars] = useState([]);  // Start with an empty array
+    const navigate = useNavigate();  // Hook for programmatically navigating
 
     useEffect(() => {
         const fetchCars = async () => {
             try {
-                const response = await axios.get("http://localhost:5000"); 
+                const response = await axios.get("http://localhost:5000");
                 setCars(response.data);  // Set the cars state to the fetched data
             } catch (error) {
                 console.error('Failed to fetch cars', error);
@@ -20,23 +20,29 @@ function Cars () {
         fetchCars();
     }, []);  // The empty array ensures this effect runs only once when the component mounts
 
-    
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5000/deleteCar/`+id)
+        axios.delete(`http://localhost:5000/deleteCar/` + id)
         .then(response => {
-            console.log(response.data) // Log the response data from the server
-            window.location.reload()
+            console.log(response.data); // Log the response data from the server
+            window.location.reload();
         })
         .catch(err => {
             console.error('Error: ' + err); // Use console.error for errors
         });
-    }
-    
+    };
+
+    const handleLogout = () => {
+        // Perform logout operations here, like clearing local storage
+        localStorage.removeItem('userToken'); // Assuming you store a token or user data
+        navigate('/login');  // Redirect to the login page
+    };
+
     return (
         <div className="d-flex vh-50 bg-primary justify-content-center align-items-center">
             <div className="w-80 bg-white rounded p-4">
                 <h1 className="dashboard-header">Admin Dashboard</h1>
                 <Link to="/create" className="btn btn-success">Add +</Link>
+                <button onClick={handleLogout} className="btn btn-primary">Logout</button>  {/* Logout Button */}
                 <table className="table">
                     <thead>
                         <tr>
