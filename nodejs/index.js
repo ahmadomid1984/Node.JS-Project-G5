@@ -40,5 +40,17 @@ const dbURI =
     }
   });
 
-//   
+  // app.get("/cars/:ids", async (req, res) => {
+  //   try {
+  //     const ids = req.params.ids;
+  //     const carIds = ids.split(",");
+  //     let result;
+  //     carIds.forEach(async (id) => {
+  //        result = await cars.findById(id);
+  //     });
+  //     res.json(result);
+  //   }catch(error) {
+  //     console.log(error);
+  //   }
+  // })
 

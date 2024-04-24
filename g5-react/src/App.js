@@ -8,6 +8,7 @@ import Cars from './components/cars';
 import NewReleased from './components/newReleased';
 import "./App.css";
 import CarDetail from './components/carDetails';
+import Cart from './components/cart';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/" element={<Cars />} />
           <Route path="/car" element={<CarDetail />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer /> {/* Render Footer component outside of Routes */}
         <div className="copyRight"> &copy; 2024 Your Company Name</div>
