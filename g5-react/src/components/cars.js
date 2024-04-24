@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/cars.css';
 
+
 function Cars() {
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [cars, setCars] = useState([]);
@@ -53,12 +54,15 @@ function Cars() {
                 ))}
             </div>
             <div className="carGrid">
+
                 {cars.filter(item => item.brand === selectedBrand).map(car => (
                     <div key={car.cars_id} className="carCard">
                         <img src='/images/bmw.jpg' alt={`${car.car_name}`} className="carImage" />
                         <h4>{car.car_name}</h4>
                         <p className="carDetails">{car.summary}</p>
                         <button onClick={() => showCarDetails(car)}>More Info</button>
+
+                
                     </div>
                 ))}
             </div>

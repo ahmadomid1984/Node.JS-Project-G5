@@ -15,6 +15,8 @@ This project is a React website built with Node.js and MongoDB, designed for a c
 - **Node.js:** Backend runtime environment for handling server-side logic.
 - **MongoDB:** NoSQL database for storing website data, such as user accounts and blog posts.
 - **Express.js:** Web application framework for Node.js used for building the backend API.
+- **cors:** 
+- **axios:** 
 - **Nodemailer:** Node.js module for sending emails.
 
 # Usage
