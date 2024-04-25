@@ -1,16 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 const app = express();
 const cars = require("./models/Car");
 
+app.use(cors());
+app.use(express.json());
 
-app.use(cors())
-app.use(express.json())
-  
-const dbURI =
+const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@${process.env.CLUSTER}.mongodb.net/${process.env.DB}?retryWrites=true&w=majority&appName=Cluster0`;
 
 "mongodb+srv://" + process.env.DBUSERNAME + ":" + process.env.DBPASSWORD + 
 "@" + process.env.CLUSTOR + ".mongodb.net/" + process.env.DB + 
@@ -30,7 +28,7 @@ const dbURI =
     // Nodemailer transporter setup
     const transporter = nodemailer.createTransport({
       service: 'gmail',
-      host : "smtp@gmail.com",
+      host : "smtp.gmail.com",
       port : 587,
       secure : false,
       auth: {
@@ -45,9 +43,9 @@ const dbURI =
         res.json(result);
       } catch (error) {
         console.log(error);
+        res.status(500).send('Error fetching products');
       }
     });
-  
 
     app.post("/contact-us", async (req, res) => {
       const { name, email, message } = req.body;
