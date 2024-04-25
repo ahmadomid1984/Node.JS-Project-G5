@@ -18,6 +18,9 @@ function Login() {
             if (result.data === "success") {
                 navigate('/cars');
             }
+            else{
+                alert("Wrong email or password");
+            }
         })
         .catch(err => console.log(err));
       }
