@@ -9,18 +9,8 @@ import "../css/carDetails.css";
 function CarDetail() {
   const navigate = useNavigate();
   const location = useLocation();
-  const addToCart = (id) => {
-    // navigate('/cart');
-    if(!id) return;
-
-    const cartIteamids = window.localStorage.getItem("cartItemIds");
-    if (cartIteamids) {
-      let ids = cartIteamids.split(",");
-      ids.push(id);
-      window.localStorage.setItem("cartItemIds", ids.join(","));
-    } else {
-      window.localStorage.setItem("cartItemIds", String(id));
-    }
+  const booking = (id) => {
+    navigate('/booking', { state: { carId: id } });
   };
 
   return (
@@ -45,10 +35,10 @@ function CarDetail() {
                   : "Out of Stock"}
               </p>
               <button
-                onClick={() => addToCart(location.state.car.cars_id)}
+                onClick={() => booking(location.state.car.cars_id)}
                 className="btn btn-primary"
               >
-                Add to Cart
+                Book a test drive
               </button>
             </div>
           </Col>
@@ -76,7 +66,7 @@ function CarDetail() {
               <strong>Transmission</strong> {location.state.car.features.Gear}
             </p>
             <p>
-              <strong>Seating</strong> {location.state.car.features.TotalSeats}
+              <strong>Seating</strong> {location.state.car.features.TotalSeats} -seats
             </p>
             <p>
               <strong>Engine Capacity</strong>{" "}

@@ -1,0 +1,25 @@
+form {
+  border: 1px solid black;
+  width: 50%;
+  margin: 16px auto;
+  padding: 20px;
+}
+
+.form-control {
+  border: 1px solid #b0aeae !important;
+  width: 100%;
+}
+.btn {
+  margin: 10px;
+}
+  label {
+    display: flex !important;
+}
+.form-container{
+  margin: 70px;
+}
+
+h2{
+  display: flex;
+  justify-content: center;
+}

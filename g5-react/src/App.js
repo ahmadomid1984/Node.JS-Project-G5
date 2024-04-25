@@ -10,7 +10,9 @@ import Cars from './components/cars';
 import Map from './components/map';
 import "./App.css";
 import CarDetail from './components/carDetails';
-import Cart from './components/cart';
+import Booking from './components/booking';
+import AdminBooking from './components/bookingAdmin';
+import UpdateBooking from './components/bookingUpdate';
 
 function App() {
 
@@ -26,7 +28,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/" element={<Cars />} />
           <Route path="/car" element={<CarDetail />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/admin/booking" element={<AdminBooking />} />
+          <Route path='/update/:id' element={<UpdateBooking />}></Route>
         </Routes>
         <Footer />
         <div className="copyRight"> &copy; 2024 Your Company Name</div>
