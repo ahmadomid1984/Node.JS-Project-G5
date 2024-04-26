@@ -26,12 +26,10 @@ function Booking() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formattedDate = startDate.toISOString();
-        // const formattedTime = startDate.toTimeString().split(' ')[0];
 
         const submissionData = {
             ...formData,
             date: formattedDate,
-            // time: formattedTime,
             car_id: location.state?.carId
         };
 

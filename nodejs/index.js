@@ -42,15 +42,6 @@ mongoose
       },
     });
 
-    app.get("/products", async (req, res) => {
-      try {
-        const result = await Product.find();
-        res.json(result);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-
     app.post("/contact-us", async (req, res) => {
       const { name, email, message } = req.body;
       console.log("Received form data:");
@@ -65,10 +56,10 @@ mongoose
           to: email,
           subject: "New Form Submission",
           text: `
-            Name: ${name}
-            Email: ${email}
-            Message: ${message}
-          `,
+              Name: ${name}
+              Email: ${email}
+              Message: ${message}
+            `,
         });
 
         console.log("Email sent successfully");
@@ -105,7 +96,22 @@ app.post("/booking", (req, res) => {
 
 app.get("/admin/booking", async (req, res) => {
   try {
-    const result = await booking.find();
+    let result = await booking.aggregate([
+      {
+        $lookup: {
+          from: "cars",
+          localField: "car_id",
+          foreignField: "cars_id",
+          as: "car",
+        },
+      },
+      {
+        $match: {
+          car: { $ne: [] },
+        },
+      },
+    ]);
+
     res.json(result);
   } catch (error) {
     console.log(error);

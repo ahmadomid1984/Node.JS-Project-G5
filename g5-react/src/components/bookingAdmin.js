@@ -52,7 +52,7 @@ function AdminBooking() {
         <table className="table">
           <thead>
             <tr>
-              <th>Car_ID</th>
+              <th>Car Name</th>
               <th>Full Name</th>
               <th>Email</th>
               <th>Phone Number</th>
@@ -64,7 +64,7 @@ function AdminBooking() {
           <tbody>
             {bookings.map((booking) => (
               <tr key={booking._id}>
-                <td>{booking.car_id}</td>
+                <td>{booking.car[0].car_name}</td>
                 <td>{booking.name}</td>
                 <td>{booking.email}</td>
                 <td>{booking.phoneNumber}</td>
