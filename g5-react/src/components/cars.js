@@ -57,7 +57,8 @@ function Cars() {
 
                 {cars.filter(item => item.brand === selectedBrand).map(car => (
                     <div key={car.cars_id} className="carCard">
-                        <img src='/images/bmw.jpg' alt={`${car.car_name}`} className="carImage" />
+                        <img src={`/images/${car.brand}_${car.car_name}.jpg`}
+                        alt={`${car.car_name}`} className="carImage" />
                         <h4>{car.brand} {car.car_name}</h4>
                         <p className="carDetails">{car.summary}</p>
                         <button onClick={() => showCarDetails(car)}>More Info</button>

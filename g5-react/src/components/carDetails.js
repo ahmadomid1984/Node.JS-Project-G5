@@ -19,11 +19,11 @@ function CarDetail() {
         <Row>
           <Col>
             {" "}
-            <img src="/images/bmw.jpg" alt="" className="img-fluid" />
+            <img src={`/images/${location.state.car.brand}_${location.state.car.car_name}.jpg`} alt="" className="img-fluid" />
           </Col>
           <Col>
             <div className="details">
-              <h2>{location.state.car.car_name}</h2>
+              <h2> {location.state.car.releasedDate} {location.state.car.brand} {location.state.car.car_name}</h2>
               <p>{location.state.car.description}</p>
               <p>
                 <strong>Price: </strong> € {location.state.car.price}
