@@ -34,7 +34,7 @@ function Cars () {
     const handleLogout = () => {
         // Perform logout operations here, like clearing local storage
         localStorage.removeItem('userToken'); // Assuming you store a token or user data
-        navigate('/login');  // Redirect to the login page
+        navigate('/login', { replace: true });  // Redirect to the login page and replace the current entry in the history stack
     };
 
     return (
