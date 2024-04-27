@@ -3,9 +3,9 @@ import './App.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Cars from './Cars'
-import CreateCar from './CreateCar'
-import UpdateCar from './UpdateCar'
-import Features from './Features'
+import CreateCar from './components/CreateCar'
+import UpdateCar from './components/UpdateCar'
+import Features from './components/Features'
 import Register from './components/register.jsx';
 import Login from './components/login.jsx';
 
