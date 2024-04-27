@@ -1,41 +1,55 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../css/booking.css"; // Assuming this is the correct path
 
 function AdminBooking() {
   const [bookings, setBookings] = useState([]);
-  // const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("/admin/booking")
-      .then((response) => response.json())
-      .then((data) => {
-        setBookings(data);
+    axios.get("/admin/booking")
+      .then(response => {
+        console.log("Bookings fetched:", response.data);  // Log the fetched data
+        setBookings(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching bookings:", error);
+      });
+}, []);
+
+
+  const handleDelete = (id) => {
+    axios.delete("/booking/" + id)
+      .then(() => {
+        const updatedBookings = bookings.filter((item) => item._id !== id);
+        setBookings(updatedBookings);
       })
       .catch((error) => {
-        console.error("Error fetching cars:", error);
-      });
-  }, []);
-
-  const handleDelete = async (id) => {
-    axios
-      .delete("/booking/" + id)
-      .then((response) => {
-        const updateBooking = bookings.filter((item) => item._id !== id);
-        setBookings(updateBooking);
-      })
-      .catch((err) => {
-        console.error("Error: " + err); // Use console.error for errors
+        console.error("Error deleting booking:", error);
       });
   };
 
-  const converToDate = (dateString) => {
+  const handleConfirmBooking = (booking) => {
+    axios.post('/api/confirm-booking', {
+      id: booking._id,
+      formData: booking
+    })
+    .then(response => {
+      alert('Confirmation email sent!');
+      console.log('Booking confirmed:', response.data);
+    })
+    .catch(error => {
+      console.error('Error confirming booking:', error);
+      alert('Error confirming booking.');
+    });
+  };
+
+  const convertToDate = (dateString) => {
     const date = new Date(dateString);
     return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
   };
 
-  const converToTime = (dateString) => {
+  const convertToTime = (dateString) => {
     const date = new Date(dateString);
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -45,6 +59,7 @@ function AdminBooking() {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     return hours + ":" + minutes + " " + ampm;
   };
+
   return (
     <div className="d-flex vh-50 bg-primary justify-content-center align-items-center">
       <div className="w-80 bg-white rounded p-4">
@@ -68,19 +83,16 @@ function AdminBooking() {
                 <td>{booking.name}</td>
                 <td>{booking.email}</td>
                 <td>{booking.phoneNumber}</td>
-                <td>{converToDate(booking.date)}</td>
-                <td>{converToTime(booking.date)}</td>
+                <td>{convertToDate(booking.date)}</td>
+                <td>{convertToTime(booking.date)}</td>
                 <td className="actions">
-                  <Link
-                    to={`/update/${booking._id}`}
-                    className="btn btn-success"
-                  >
+                  <button className="btn btn-primary" onClick={() => handleConfirmBooking(booking)}>
+                    Confirm Booking
+                  </button>
+                  <Link to={`/update/${booking._id}`} className="btn btn-success">
                     Edit
                   </Link>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(booking._id)}
-                  >
+                  <button className="btn btn-danger" onClick={() => handleDelete(booking._id)}>
                     Delete
                   </button>
                 </td>

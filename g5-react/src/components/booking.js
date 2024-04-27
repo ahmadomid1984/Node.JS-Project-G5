@@ -56,7 +56,7 @@ function Booking() {
     };
 
     return (
-      <div className='form-container'>
+        <div className='form-container'>
         <h2>Booking</h2>
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formGroupName">
