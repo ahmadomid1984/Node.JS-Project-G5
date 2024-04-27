@@ -6,6 +6,8 @@ require("dotenv").config();
 const app = express();
 const cars = require("./models/Car");
 const booking = require("./models/Booking");
+const moment = require('moment-timezone');
+
 
 app.use(cors());
 app.use(express.json());
@@ -146,20 +148,23 @@ app.put("/update/:id", (req, res) => {
 });
 
 app.post('/api/confirm-booking', async (req, res) => {
-    const { id, formData } = req.body;
+    const { formData } = req.body;
     if (!formData || !formData.email) {
         console.error('Invalid input received');
         return res.status(400).send({ message: 'Invalid booking details provided.' });
     }
 
-    // Assuming formData contains all necessary booking details
     try {
+        // Convert UTC date to Helsinki time before sending the email
+        const helsinkiTime = moment.utc(formData.date).tz("Europe/Helsinki").format('YYYY-MM-DDTHH:mm:ssZ');
+
         await transporter.sendMail({
             from: process.env.EMAIL_USER, // This should match the authorized email
             to: formData.email,
             subject: 'Booking Confirmation',
-            text: `Your booking for ${formData.date} has been confirmed!`
+            text: `Your booking for ${helsinkiTime} has been confirmed!`
         });
+
         console.log('Email sent successfully');
         res.status(200).send({ message: 'Confirmation email sent successfully!' });
     } catch (error) {

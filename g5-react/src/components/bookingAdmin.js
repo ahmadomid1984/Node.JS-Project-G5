@@ -17,7 +17,6 @@ function AdminBooking() {
       });
 }, []);
 
-
   const handleDelete = (id) => {
     axios.delete("/booking/" + id)
       .then(() => {
@@ -51,14 +50,11 @@ function AdminBooking() {
 
   const convertToTime = (dateString) => {
     const date = new Date(dateString);
-    let hours = date.getHours();
+    let hours = date.getHours(); // get hours directly in 24-hour format
     let minutes = date.getMinutes();
-    let ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    return hours + ":" + minutes + " " + ampm;
-  };
+    minutes = minutes < 10 ? "0" + minutes : minutes; // pad single-digit minutes with a leading zero
+    return hours + ":" + minutes; // return the time in 24-hour format
+  };  
 
   return (
     <div className="d-flex vh-50 bg-primary justify-content-center align-items-center">
