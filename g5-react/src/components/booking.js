@@ -67,7 +67,8 @@ function Booking() {
         const submissionData = {
             ...formData,
             date: helsinkiDate, // Using the Helsinki date here
-            car_id: location.state?.carId
+            car_id: location.state?.carId,
+            isBooked: false
         };
 
         fetch('/booking', {
