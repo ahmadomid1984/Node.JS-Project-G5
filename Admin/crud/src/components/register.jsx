@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
+
 function Register() {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -21,7 +22,7 @@ function Register() {
       alert("Passwords do not match");
       return;
     }
-    axios.post('http://localhost:5000/register', {
+    axios.post('/api/register', {
       firstName, 
       lastName, 
       phoneNumber, 
@@ -40,9 +41,9 @@ function Register() {
     });
   }
   return (  
-    <div className="container">
+    <div className="registerContainer">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-8">
           <div className="card mt-5">
             <div className="card-body">
               <h2 className="card-title text-center">Register</h2>

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import './css/Cars.css';
+import "../css/AdminDashboard.css";
 
-function Cars () {
+function AdminDashboard() {
     const [cars, setCars] = useState([]);  // Start with an empty array
     const navigate = useNavigate();  // Hook for programmatically navigating
 
     useEffect(() => {
         const fetchCars = async () => {
             try {
-                const response = await axios.get("http://localhost:5000");
+                const response = await axios.get('/api/cars');
                 setCars(response.data);  // Set the cars state to the fetched data
             } catch (error) {
                 console.error('Failed to fetch cars', error);
@@ -18,13 +18,13 @@ function Cars () {
         };
 
         fetchCars();
-    }, []);  // The empty array ensures this effect runs only once when the component mounts
+    }, []);
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5000/deleteCar/` + id)
+        axios.delete(`/api/deleteCar/` + id)
         .then(response => {
             console.log(response.data); // Log the response data from the server
-            window.location.reload();
+            window.location.reload();  // Reload the page to update the list
         })
         .catch(err => {
             console.error('Error: ' + err); // Use console.error for errors
@@ -32,17 +32,19 @@ function Cars () {
     };
 
     const handleLogout = () => {
-        // Perform logout operations here, like clearing local storage
-        localStorage.removeItem('userToken'); // Assuming you store a token or user data
-        navigate('/login', { replace: true });  // Redirect to the login page and replace the current entry in the history stack
+        localStorage.removeItem('userToken');  // Clearing user token
+        navigate('/login', { replace: true });  // Navigate to login and replace history
     };
 
     return (
         <div className="d-flex vh-50 bg-primary justify-content-center align-items-center">
             <div className="w-80 bg-white rounded p-4">
                 <h1 className="dashboard-header">Admin Dashboard</h1>
-                <Link to="/create" className="btn btn-success">Add +</Link>
-                <button onClick={handleLogout} className="btn btn-primary">Logout</button>  {/* Logout Button */}
+                <div className="mb-2">
+                    <Link to="/admin/create" className="btn btn-success me-2">Add +</Link>
+                    <Link to="/admin/bookings" className="btn btn-info">Bookings</Link>
+                    <button onClick={handleLogout} className="btn btn-primary ms-2">Logout</button> {/* Logout Button */}
+                </div>
                 <table className="table">
                     <thead>
                         <tr>
@@ -69,8 +71,8 @@ function Cars () {
                                 <td className="summary">{car.summary}</td>
                                 <td>{car.description}</td>
                                 <td className="actions">
-                                    <Link to={`/features/${car._id}`} className="btn btn-info">Features</Link>
-                                    <Link to={`/update/${car._id}`} className="btn btn-success">Edit</Link>
+                                    <Link to={`/admin/features/${car._id}`} className="btn btn-info me-1">Features</Link>
+                                    <Link to={`/admin/update/${car._id}`} className="btn btn-success me-1">Edit</Link>
                                     <button className="btn btn-danger" onClick={() => handleDelete(car._id)}>Delete</button>
                                 </td>
                             </tr>
@@ -82,4 +84,4 @@ function Cars () {
     );
 }
 
-export default Cars;
+export default AdminDashboard;

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import './css/Features.css'; // Ensure the path is correct
+import '../css/Features.css';
 
 function Features() {
     const { id } = useParams();
     const [car, setCar] = useState({});
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/getCar/`+id)
+        axios.get(`/api/getCar/`+id)
             .then(response => {
                 setCar(response.data);
             })
@@ -36,7 +36,7 @@ function Features() {
                         </tbody>
                     </table>
                 )}
-                <Link to="/cars" className="link">Back to Cars List</Link>
+                <Link to="/admin" className="link">Back to Cars List</Link>
             </div>
         </div>
     );
