@@ -15,8 +15,12 @@ form {
   label {
     display: flex !important;
 }
+
 .form-container{
   margin: 70px;
+  flex-direction: column;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
 }
 
 h2{

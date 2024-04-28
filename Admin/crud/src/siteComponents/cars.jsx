@@ -10,7 +10,7 @@ function Cars() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('/cars')
+        fetch('/api/cars')
             .then(response => response.json())
             .then(data => {
                 setCars(data);

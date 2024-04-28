@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import "./css/UpdateCar.css";
+import "../css/UpdateCar.css";
 
 function UpdateCar() {
     const { id } = useParams();
@@ -30,7 +30,7 @@ function UpdateCar() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/getCar/${id}`)
+        axios.get(`/api/getCar/${id}`)
             .then(response => {
                 const data = response.data;
                 setId(data.cars_id || "");
@@ -73,7 +73,7 @@ function UpdateCar() {
         })
         .then(result => {
             console.log(result);
-            navigate('/cars');
+            navigate('/admin');
             setError("");
         })
         .catch(err => {
@@ -131,7 +131,7 @@ function UpdateCar() {
                     {error && <p className="text-danger">{error}</p>}
                     <div className="update-btn-container">
                         <button className="btn btn-success">Update</button>
-                        <Link to="/cars" className="btn btn-secondary">Back to Cars List</Link>
+                        <Link to="/admin" className="btn btn-secondary">Back to Cars List</Link>
                     </div>
                 </form>
             </div>

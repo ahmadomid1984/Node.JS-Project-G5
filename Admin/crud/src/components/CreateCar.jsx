@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import './css/CreateCar.css';  // Make sure your CSS path is correct
+import '../css/CreateCar.css';
 
 function CreateCar() {
     const [cars_id, setId] = useState("");
@@ -48,10 +48,10 @@ function CreateCar() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const carData = { cars_id, car_name, brand, releasedDate, price, available_count, summary, description, features };
-        axios.post("http://localhost:5000/CreateCar", carData)
+        axios.post("/api/CreateCar", carData)
             .then(result => {
                 console.log(result);
-                navigate('/cars');
+                navigate('/admin');
                 setError("");
             })
             .catch(err => {
@@ -109,7 +109,7 @@ function CreateCar() {
                     {error && <p className="text-danger">{error}</p>}
                     <div className="btn-container">
                         <button type="submit" className="btn btn-success">Submit</button>
-                        <Link to="/cars" className="btn btn-secondary">Back to Cars List</Link>
+                        <Link to="/admin" className="btn btn-secondary">Back to Cars List</Link>
                     </div>
                 </form>
             </div>

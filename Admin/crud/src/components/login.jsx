@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'; 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+
 function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -11,12 +11,12 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email, password);
-        axios.post('http://localhost:5000/login', { 
+        axios.post('/api/login', { 
           email,
           password
         }).then(result => {console.log(result)
             if (result.data === "success") {
-                navigate('/cars');
+                navigate('/admin');
             }
             else{
                 alert("Wrong email or password");
@@ -25,7 +25,7 @@ function Login() {
         .catch(err => console.log(err));
       }
   return (
-    <div className="container">
+    <div className="loginContainer">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card mt-5">

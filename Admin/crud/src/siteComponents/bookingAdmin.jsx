@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../css/booking.css"; // Assuming this is the correct path
+import "../css/booking.css";
 
 function AdminBooking() {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    axios.get("/admin/booking")
+    axios.get("/api/admin/booking")
       .then(response => {
         console.log("Bookings fetched:", response.data);  // Log the fetched data
-        setBookings(response.data);
+        if (Array.isArray(response.data)) {
+          setBookings(response.data);
+        } else {
+          console.error("Expected an array but received:", response.data);
+          setBookings([]); // Set to empty array if not array to prevent errors
+        }
       })
       .catch(error => {
         console.error("Error fetching bookings:", error);
+        setBookings([]); // Ensure bookings is still an array on error
       });
-}, []);
+  }, []);
 
   const handleDelete = (id) => {
-    axios.delete("/booking/" + id)
+    axios.delete("/api/booking/" + id)
       .then(() => {
         const updatedBookings = bookings.filter((item) => item._id !== id);
         setBookings(updatedBookings);
@@ -29,7 +35,7 @@ function AdminBooking() {
   };
 
   const handleConfirmBooking = (booking) => {
-    axios.post('/api/confirm-booking', {
+    axios.post('/api/api/confirm-booking', {
       id: booking._id,
       formData: booking
     })
@@ -59,7 +65,7 @@ function AdminBooking() {
   return (
     <div className="d-flex vh-50 bg-primary justify-content-center align-items-center">
       <div className="w-80 bg-white rounded p-4">
-        <h1 className="dashboard-header">Admin Dashboard</h1>
+        <h1 className="dashboard-header">Bookings</h1>
         <table className="table">
           <thead>
             <tr>
@@ -85,9 +91,6 @@ function AdminBooking() {
                   <button className="btn btn-primary" onClick={() => handleConfirmBooking(booking)}>
                     Confirm Booking
                   </button>
-                  <Link to={`/update/${booking._id}`} className="btn btn-success">
-                    Edit
-                  </Link>
                   <button className="btn btn-danger" onClick={() => handleDelete(booking._id)}>
                     Delete
                   </button>
@@ -96,6 +99,12 @@ function AdminBooking() {
             ))}
           </tbody>
         </table>
+        {/* Button to go back to the Admin Dashboard */}
+        <div className="mt-4">
+          <Link to="/admin" className="btn btn-secondary">
+            Back to Admin Dashboard
+          </Link>
+        </div>
       </div>
     </div>
   );

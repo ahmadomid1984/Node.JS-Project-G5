@@ -1,12 +1,11 @@
 
 .container {
-      margin-top: -50px;
+  margin-top: -50px;
 }
 
 .img-fluid {
   max-width: 100%;
   height: auto; /* Maintain aspect ratio */
- 
 }
 .addButton {
   padding: 10px 20px;
@@ -37,8 +36,8 @@ h2{
 }
 
 .features p strong {
-   font-weight: bold; /* Makes the label bold */
-   font-size: 1rem;
+    font-weight: bold; /* Makes the label bold */
+    font-size: 1rem;
 }
 
 .details {

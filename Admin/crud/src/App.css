@@ -1,0 +1,11 @@
+.App {
+    text-align: center;
+    }
+    
+    .copyRight {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        background-color: #251a20;
+        color: white;
+    }

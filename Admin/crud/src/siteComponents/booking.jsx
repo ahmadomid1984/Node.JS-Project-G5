@@ -70,7 +70,7 @@ function Booking() {
             car_id: location.state?.carId
         };
 
-        fetch('/booking', {
+        fetch('/api/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
