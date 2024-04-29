@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -19,12 +19,17 @@ import Features from './components/Features';
 import Register from './components/register';
 import Login from './components/login';
 import AdminBooking from './siteComponents/bookingAdmin';
-import ProtectedRoute from './context/ProtectedRoute';  
+import ProtectedRoute from './context/ProtectedRoute';
 
 function App() {
+  const location = useLocation();
+  
+  // Function to check if the current location is an admin path
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
     <div className="App">
-      <NavBar />
+      {!isAdminRoute && <NavBar />}
       <Routes>
         {/* Main site routes */}
         <Route path="/" element={<Home />} />
@@ -43,8 +48,8 @@ function App() {
         <Route path="/admin/features/:id" element={<ProtectedRoute><Features /></ProtectedRoute>} />
         <Route path="/admin/bookings" element={<ProtectedRoute><AdminBooking /></ProtectedRoute>} />
       </Routes>
-      <Footer />
-      <div className="copyRight"> &copy; 2024 Your Company Name</div>
+      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && <div className="copyRight"> &copy; 2024 Your Company Name</div>}
     </div>
   );
 }
