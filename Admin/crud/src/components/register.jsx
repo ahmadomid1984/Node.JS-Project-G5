@@ -43,7 +43,7 @@ function Register() {
   return (  
     <div className="registerContainer">
       <div className="row justify-content-center">
-        <div className="col-md-8">
+        <div className="col-md-4">
           <div className="card mt-5">
             <div className="card-body">
               <h2 className="card-title text-center">Register</h2>
@@ -75,7 +75,7 @@ function Register() {
                 <button type="submit" className="btn btn-primary w-100">Register</button>
               </form>
               <p className="text-center mt-3">Already have an account? </p>
-              <Link to="/login" className='btn btn-default border w-100 bg-light round-0 text-center'>Login</Link>
+              <Link to="/login" className='btn btn-default border w-50 bg-light round-0 text-center'>Login</Link>
             </div>
           </div>
         </div>

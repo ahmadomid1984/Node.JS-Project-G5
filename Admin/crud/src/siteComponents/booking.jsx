@@ -95,8 +95,8 @@ function Booking() {
     };
 
     return (
-        <div className='form-container'>
-            <h2>Booking</h2>
+        <div className='table-form'>
+            <h2 className='bookingForm'>Booking</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGroupName">
                     <Form.Label>Full Name</Form.Label>
@@ -139,7 +139,6 @@ function Booking() {
                         dateFormat="MMMM d, yyyy"
                     />
                     <div className="time-selector">
-                        <label>Select a Time: </label>
                         <select onChange={handleTimeChange} value={selectedTime || ''} required>
                             <option value="">Select Time</option>
                             {availableTimes.map(time => (

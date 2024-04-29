@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 require("dotenv").config();
 const CarModel = require("./models/Cars");
 const AdminsInfoModel = require("./models/admins");
@@ -10,29 +12,72 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 
-// Configure CORS to allow requests from the specific frontend URL
 app.use(cors({
     origin: 'http://localhost:5173'
 }));
 
 app.use(express.json());
 
-const dbURI =
-"mongodb+srv://" + process.env.DBUSERNAME + ":" + process.env.DBPASSWORD + 
-"@" + process.env.CLUSTOR + ".mongodb.net/" + process.env.DB + 
-"?retryWrites=true&w=majority&appName=Cluster0";
+const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@${process.env.CLUSTOR}.mongodb.net/${process.env.DB}?retryWrites=true&w=majority&appName=Cluster0`;
 
-console.log(dbURI);
-mongoose
-    .connect(dbURI)
-    .then((result) => {
-        console.log("Connected to DB");
-        const PORT = process.env.PORT || 5000;
-        app.listen(PORT, () => console.log("Listening on " + PORT));
-    })
-    .catch((err) => {
-        console.log(err);
+mongoose.connect(dbURI)
+    .then(() => console.log("Connected to DB"))
+    .catch(err => console.log("Database connection error:", err));
+
+
+// Function to verify JWT
+function authenticateToken(req, res, next) {
+    const token = req.headers['authorization']?.split(' ')[1]; // Authorization: Bearer TOKEN
+    if (!token) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
     });
+}
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    AdminsInfoModel.findOne({ email: email })
+        .then(user => {
+            if (user) {
+                console.log("Expected password:", user.password, "Received password:", password);
+                if (user.password === password) { // Add hashing comparison here if necessary
+                    res.json("success");
+                } else {
+                    res.json("wrong password");
+                }
+            } else {
+                res.json("user not found");
+            }
+        }).catch(err => {
+            console.error("Login error:", err);
+            res.status(500).json("Server error");
+        });
+});
+
+
+app.post('/register', (req, res) => {
+    const { firstName, lastName, phoneNumber, email, password } = req.body;
+    if (!email || !password) { // Basic validation
+        return res.status(400).json('Email and password are required.');
+    }
+    // Assuming AdminsInfoModel handles the registration logic:
+    AdminsInfoModel.create({
+        firstName,
+        lastName,
+        phoneNumber,
+        email,
+        password
+    })
+    .then(user => res.status(201).json(user))
+    .catch(err => {
+        console.error(err);
+        res.status(500).json('Registration failed. Please try again.');
+    });
+});
+
 
 // Use Mongoose to fetch all cars
 app.get("/cars", (req, res) => {
@@ -86,29 +131,6 @@ app.post("/CreateCar", (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// Aryan Side
-app.post('/register', (req, res) => {
-    AdminsInfoModel.create(req.body)
-        .then(AdminsInfo => res.json(AdminsInfo))
-        .catch(err => res.status(400).json('Error:' + err));
-});
-
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    AdminsInfoModel.findOne({ email: email })
-        .then(user => {
-            if (user) {
-                if (user.password === password) {
-                    res.json("success");
-                } else {
-                    res.json("wrong password");
-                }
-            } else {
-                res.json("user not found");
-            }
-        });
-});
-
 // Setup Nodemailer transporter
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -138,10 +160,6 @@ app.post("/contact-us", async (req, res) => {
         res.status(500).send("Error sending email");
     }
 });
-
-
-
-// Shreya Side
 
 // API to create a new booking
 app.post("/booking", async (req, res) => {
@@ -187,6 +205,7 @@ app.delete("/booking/:id", async (req, res) => {
 });
 
 
+// API to confirm a booking and send email with local time
 app.post('/api/confirm-booking', async (req, res) => {
     const { formData } = req.body;
     if (!formData || !formData.email) {
@@ -195,16 +214,12 @@ app.post('/api/confirm-booking', async (req, res) => {
     }
 
     try {
-        // Convert UTC date to Helsinki time before sending the email
-        const helsinkiTime = moment.utc(formData.date).tz("Europe/Helsinki").format('YYYY-MM-DDTHH:mm:ssZ');
-
         await transporter.sendMail({
-            from: process.env.EMAIL_USER, // This should match the authorized email
+            from: process.env.EMAIL_USER, 
             to: formData.email,
             subject: 'Booking Confirmation',
-            text: `Your booking for ${helsinkiTime} has been confirmed!`
+            text: `Your booking has been confirmed!`
         });
-
         console.log('Email sent successfully');
         res.status(200).send({ message: 'Confirmation email sent successfully!' });
     } catch (error) {
@@ -213,3 +228,5 @@ app.post('/api/confirm-booking', async (req, res) => {
     }
 });
 
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

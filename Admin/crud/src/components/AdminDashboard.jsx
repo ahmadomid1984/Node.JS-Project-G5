@@ -4,14 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/AdminDashboard.css";
 
 function AdminDashboard() {
-    const [cars, setCars] = useState([]);  // Start with an empty array
-    const navigate = useNavigate();  // Hook for programmatically navigating
+    const [cars, setCars] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCars = async () => {
             try {
                 const response = await axios.get('/api/cars');
-                setCars(response.data);  // Set the cars state to the fetched data
+                setCars(response.data);
             } catch (error) {
                 console.error('Failed to fetch cars', error);
             }
@@ -22,18 +22,24 @@ function AdminDashboard() {
 
     const handleDelete = (id) => {
         axios.delete(`/api/deleteCar/` + id)
-        .then(response => {
-            console.log(response.data); // Log the response data from the server
-            window.location.reload();  // Reload the page to update the list
-        })
-        .catch(err => {
-            console.error('Error: ' + err); // Use console.error for errors
-        });
+            .then(response => {
+                console.log(response.data);
+                window.location.reload();
+            })
+            .catch(err => {
+                console.error('Error:', err);
+            });
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('userToken');  // Clearing user token
-        navigate('/login', { replace: true });  // Navigate to login and replace history
+        // Assuming you're using local storage to manage the login state
+        localStorage.clear();  // This will clear all local storage, ensuring no lingering data
+
+        // Navigate to login and replace history
+        navigate('/login', { replace: true });
+
+        // Optional: Force a full reload from the server to ensure all session data is cleared
+        window.location.href = '/login';
     };
 
     return (
@@ -43,7 +49,7 @@ function AdminDashboard() {
                 <div className="mb-2">
                     <Link to="/admin/create" className="btn btn-success me-2">Add +</Link>
                     <Link to="/admin/bookings" className="btn btn-info">Bookings</Link>
-                    <button onClick={handleLogout} className="btn btn-primary ms-2">Logout</button> {/* Logout Button */}
+                    <button onClick={handleLogout} className="btn btn-primary ms-2">Logout</button>
                 </div>
                 <table className="table">
                     <thead>
