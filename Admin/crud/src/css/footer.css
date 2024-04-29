@@ -1,0 +1,28 @@
+.footer {
+  background-color: #251a20;
+  padding: 20px;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icon a {
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  background-color: #366b91d1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.5rem; /* Adjust this value to increase the size of the icons */
+}
