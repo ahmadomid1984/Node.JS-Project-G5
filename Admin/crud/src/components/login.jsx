@@ -11,20 +11,23 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         // Here we make the post request to your API
         axios.post('/api/login', { 
             email, 
             password 
-            }, {
+        }, {
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            if (response.data === "success") {
-                login(response.data.token, { email }); // Assuming your API returns a token
+            // Check if the response contains a token
+            if (response.data.token) {
+                // Call the login function and navigate to the admin page
+                login(response.data.token, { email });
                 navigate('/admin');
             } else {
+                // Display an error message for wrong email or password
                 alert("Wrong email or password");
             }
         }).catch(error => {
@@ -32,6 +35,7 @@ function Login() {
             alert("Network error or server not responding");
         });
     };
+    
 
     return (
         <div className="loginContainer">

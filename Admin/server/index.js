@@ -25,77 +25,100 @@ mongoose.connect(dbURI)
     .catch(err => console.log("Database connection error:", err));
 
 
-// Function to verify JWT
+// Middleware to verify JWT
 function authenticateToken(req, res, next) {
-    const token = req.headers['authorization']?.split(' ')[1]; // Authorization: Bearer TOKEN
-    if (!token) return res.sendStatus(401);
-
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (!token) return res.status(401).send('Access token is required');
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403);
+        if (err) return res.status(403).send('Invalid token');
         req.user = user;
         next();
     });
 }
 
+// Endpoint to verify if the token is still valid
+app.get('/api/verify-token', authenticateToken, (req, res) => {
+    // If the token is valid, the authenticateToken middleware would allow this route to be executed
+    res.status(200).send({ valid: true, id: req.user.id });
+});
+
+
+// Login route
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
-    AdminsInfoModel.findOne({ email: email })
+    const normalizedEmail = email.toLowerCase(); // Normalize email to lowercase
+
+    // Find user by email
+    AdminsInfoModel.findOne({ email: normalizedEmail })
         .then(user => {
-            if (user) {
-                console.log("Expected password:", user.password, "Received password:", password);
-                if (user.password === password) { // Add hashing comparison here if necessary
-                    res.json("success");
-                } else {
-                    res.json("wrong password");
-                }
-            } else {
-                res.json("user not found");
+            if (!user) {
+                return res.status(404).send("User not found");
             }
-        }).catch(err => {
-            console.error("Login error:", err);
-            res.status(500).json("Server error");
+            // Compare hashed password with password provided during login
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) {
+                    console.error(err); // Log error for debugging
+                    return res.status(500).send("Server error");
+                }
+                if (!isMatch) {
+                    return res.status(401).send("Wrong email or password");
+                }
+                // Generate and send JWT token if passwords match
+                const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                res.json({ token });
+            });
+        })
+        .catch(err => {
+            console.error(err); // Log error for debugging
+            res.status(500).send("Server error");
         });
 });
 
-
-app.post('/register', (req, res) => {
+// Register route
+app.post('/register', async (req, res) => {
     const { firstName, lastName, phoneNumber, email, password } = req.body;
-    if (!email || !password) { // Basic validation
-        return res.status(400).json('Email and password are required.');
+    if (!email || !password) {
+        return res.status(400).send('Email and password are required.');
     }
-    // Assuming AdminsInfoModel handles the registration logic:
-    AdminsInfoModel.create({
-        firstName,
-        lastName,
-        phoneNumber,
-        email,
-        password
-    })
-    .then(user => res.status(201).json(user))
-    .catch(err => {
-        console.error(err);
-        res.status(500).json('Registration failed. Please try again.');
-    });
+
+    try {
+        const normalizedEmail = email.toLowerCase(); // Normalize email to lowercase
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = await AdminsInfoModel.create({
+            firstName,
+            lastName,
+            phoneNumber,
+            email: normalizedEmail, // Save normalized email to the database
+            password: hashedPassword
+        });
+
+
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({ user: newUser, token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Registration failed. Please try again.');
+    }
 });
 
-
-// Use Mongoose to fetch all cars
+// Fetch all cars
 app.get("/cars", (req, res) => {
     CarModel.find()  
     .then(cars => res.json(cars))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => res.status(400).send('Error: ' + err));
 });
 
-// Get the car data by ID in order to update 
-app.get("/getCar/:id", (req, res) => {
+// Fetch a car by ID
+app.get("/getCar/:id", authenticateToken, (req, res) => {
     const id = req.params.id;
-    CarModel.findById({_id:id}) 
+    CarModel.findById(id)
     .then(car => res.json(car))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => res.status(400).send('Error: ' + err));
 });
 
 // Update the car data
-app.put("/updateCar/:id", (req, res) => {
+app.put("/updateCar/:id", authenticateToken,(req, res) => {
     const id = req.params.id;
     CarModel.findByIdAndUpdate(
         {_id: id}, 
@@ -116,19 +139,19 @@ app.put("/updateCar/:id", (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// Delete the car data
-app.delete("/deleteCar/:id", (req, res) => {
+// Delete a car
+app.delete("/deleteCar/:id", authenticateToken, (req, res) => {
     const id = req.params.id;
-    CarModel.findByIdAndDelete({_id:id})
-    .then(cars => res.json(cars))
-    .catch(err => res.status(400).json('Error: ' + err));
+    CarModel.findByIdAndDelete(id)
+    .then(result => res.json(result))
+    .catch(err => res.status(400).send('Error: ' + err));
 });
 
-// Create a new car data
-app.post("/CreateCar", (req, res) => {
+// Create a new car
+app.post("/CreateCar", authenticateToken, (req, res) => {
     CarModel.create(req.body)
-    .then(cars => res.json(cars))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .then(car => res.json(car))
+    .catch(err => res.status(400).send('Error: ' + err));
 });
 
 // Setup Nodemailer transporter
@@ -215,71 +238,71 @@ app.post('/api/confirm-booking', async (req, res) => {
 
     try {
         booking
-          .findByIdAndUpdate(
-            { _id: id },
-            {
-              $set: {
-                car_id: formData.car_id,
-                name: formData.name,
-                email: formData.email,
-                phoneNumber: formData.phoneNumber,
-                date: formData.date,
-                time: formData.time,
-                isBooked: isBooked,
-              },
-            },
-            { new: true }
-          )
-          .then(() => {})
-          .catch((err) => res.status(400).json("Error: " + err));
+            .findByIdAndUpdate(
+                { _id: id },
+                {
+                $set: {
+                    car_id: formData.car_id,
+                    name: formData.name,
+                    email: formData.email,
+                    phoneNumber: formData.phoneNumber,
+                    date: formData.date,
+                    time: formData.time,
+                    isBooked: isBooked,
+                },
+                },
+                { new: true }
+            )
+            .then(() => {})
+            .catch((err) => res.status(400).json("Error: " + err));
     
+// Working as inner join for car data from cars collection
+    const bookingDetails = await booking.aggregate([
+        {
+        $lookup: {
+            from: "cars",
+            localField: "car_id",
+            foreignField: "cars_id",
+            as: "car",
+        },
+        },
+        {
+        $match: {
+            car: { $ne: [] },
+        },
+        },
+    ]);
     
-        const bookingDetails = await booking.aggregate([
-            {
-              $lookup: {
-                from: "cars",
-                localField: "car_id",
-                foreignField: "cars_id",
-                as: "car",
-              },
-            },
-            {
-              $match: {
-                car: { $ne: [] },
-              },
-            },
-          ]);
-    
-        let updatedBookingDetails = bookingDetails.find(x => x._id == id);
-    
-        // Convert UTC date to Helsinki time before sending the email
-        const formattedDate = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("ddd MMM DD YYYY");
-        const formattedTime = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("HH:mm");
-    
-        await transporter.sendMail({
-          from: process.env.EMAIL_USER, // This should match the authorized email
-          to: formData.email,
-          subject: `Booking confirmation at ${formattedDate} ${formattedTime}`,
-          html: `
-          <p>Hello ${updatedBookingDetails.name},</p>
-      <p>Thank you for booking a test drive with us! Here are the details of your appointment:</p>
-      <p><strong>Date:</strong> ${formattedDate}</p>
-      <p><strong>Time:</strong> ${formattedTime}</p>
-      <p><strong>Car Model:</strong>${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}</p> 
-      <p>Please arrive 15 minutes early with your driver’s license and any other required documents. If you need to delete your appointment, please contact us at [Contact Information].</p>
-      <p>We look forward to seeing you and hope you enjoy driving the ${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}!</p>
-      <p>Best regards,</p>
-      <p>XYZ</p>
-          `,
-        });
-    
-        console.log("Email sent successfully");
-        res.status(200).send({ message: "Confirmation email sent successfully!" });
-      } catch (error) {
+    let updatedBookingDetails = bookingDetails.find(x => x._id == id);
+
+    // Convert UTC date to Helsinki time before sending the email
+    const formattedDate = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("ddd MMM DD YYYY");
+    const formattedTime = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("HH:mm");
+
+    await transporter.sendMail({
+        from: process.env.EMAIL_USER, // This should match the authorized email
+        to: formData.email,
+        subject: `Booking confirmation at ${formattedDate} ${formattedTime}`,
+        html: `
+        <p>Hello ${updatedBookingDetails.name},</p>
+    <p>Thank you for booking a test drive with us! Here are the details of your appointment:</p>
+    <p><strong>Date:</strong> ${formattedDate}</p>
+    <p><strong>Time:</strong> ${formattedTime}</p>
+    <p><strong>Car Model:</strong>${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}</p> 
+    <p>Please arrive 15 minutes early with your driver’s license and any other required documents. If you need to cancel your appointment, please contact us at +3584750000.</p>
+    <p>We look forward to seeing you and hope you enjoy driving the ${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}!</p>
+    <p>Best regards,</p>
+    <p>XYZ</p>
+        `,
+    });
+
+    console.log("Email sent successfully");
+    res.status(200).send({ message: "Confirmation email sent successfully!" });
+    } catch (error) {
         console.error("Failed to send confirmation email:", error);
         res.status(500).send({ message: "Failed to send confirmation email." });
-      }
-    });
+    }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

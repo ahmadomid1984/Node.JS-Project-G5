@@ -9,13 +9,22 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        if (user) {
-            setCurrentUser(JSON.parse(user));
+        if (user && token) {
+            // Verify token validity with an endpoint or local check
+            axios.get('/api/verify-token', { headers: { Authorization: `Bearer ${token}` } })
+                .then(response => {
+                    console.log("Token is valid:", response.data);
+                    setCurrentUser(JSON.parse(user));
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                })
+                .catch(error => {
+                    console.error("Token validation failed:", error);
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('token');
+                    setCurrentUser(null);
+                });
         }
-        if (token) {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        }
-    }, []);
+    }, []);    
 
     const login = async (token, userInfo) => {
         localStorage.setItem('user', JSON.stringify(userInfo));
@@ -44,7 +53,7 @@ export const useAuth = () => {
     const context = useContext(AuthContext);
     if (context === undefined) {
         throw new Error('useAuth must be used within an AuthProvider');
-        }
+    }
     
-        return context;
-    };
+    return context;
+};
