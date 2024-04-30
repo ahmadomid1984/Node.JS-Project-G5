@@ -37,6 +37,7 @@ function authenticateToken(req, res, next) {
     });
 }
 
+// Login Area
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     AdminsInfoModel.findOne({ email: email })
@@ -58,6 +59,7 @@ app.post('/login', (req, res) => {
 });
 
 
+// Register Area
 app.post('/register', (req, res) => {
     const { firstName, lastName, phoneNumber, email, password } = req.body;
     if (!email || !password) { // Basic validation
@@ -215,71 +217,71 @@ app.post('/api/confirm-booking', async (req, res) => {
 
     try {
         booking
-          .findByIdAndUpdate(
-            { _id: id },
-            {
-              $set: {
-                car_id: formData.car_id,
-                name: formData.name,
-                email: formData.email,
-                phoneNumber: formData.phoneNumber,
-                date: formData.date,
-                time: formData.time,
-                isBooked: isBooked,
-              },
-            },
-            { new: true }
-          )
-          .then(() => {})
-          .catch((err) => res.status(400).json("Error: " + err));
+            .findByIdAndUpdate(
+                { _id: id },
+                {
+                $set: {
+                    car_id: formData.car_id,
+                    name: formData.name,
+                    email: formData.email,
+                    phoneNumber: formData.phoneNumber,
+                    date: formData.date,
+                    time: formData.time,
+                    isBooked: isBooked,
+                },
+                },
+                { new: true }
+            )
+            .then(() => {})
+            .catch((err) => res.status(400).json("Error: " + err));
     
+// Working as inner join for car data from cars collection
+    const bookingDetails = await booking.aggregate([
+        {
+        $lookup: {
+            from: "cars",
+            localField: "car_id",
+            foreignField: "cars_id",
+            as: "car",
+        },
+        },
+        {
+        $match: {
+            car: { $ne: [] },
+        },
+        },
+    ]);
     
-        const bookingDetails = await booking.aggregate([
-            {
-              $lookup: {
-                from: "cars",
-                localField: "car_id",
-                foreignField: "cars_id",
-                as: "car",
-              },
-            },
-            {
-              $match: {
-                car: { $ne: [] },
-              },
-            },
-          ]);
-    
-        let updatedBookingDetails = bookingDetails.find(x => x._id == id);
-    
-        // Convert UTC date to Helsinki time before sending the email
-        const formattedDate = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("ddd MMM DD YYYY");
-        const formattedTime = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("HH:mm");
-    
-        await transporter.sendMail({
-          from: process.env.EMAIL_USER, // This should match the authorized email
-          to: formData.email,
-          subject: `Booking confirmation at ${formattedDate} ${formattedTime}`,
-          html: `
-          <p>Hello ${updatedBookingDetails.name},</p>
-      <p>Thank you for booking a test drive with us! Here are the details of your appointment:</p>
-      <p><strong>Date:</strong> ${formattedDate}</p>
-      <p><strong>Time:</strong> ${formattedTime}</p>
-      <p><strong>Car Model:</strong>${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}</p> 
-      <p>Please arrive 15 minutes early with your driver’s license and any other required documents. If you need to delete your appointment, please contact us at [Contact Information].</p>
-      <p>We look forward to seeing you and hope you enjoy driving the ${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}!</p>
-      <p>Best regards,</p>
-      <p>XYZ</p>
-          `,
-        });
-    
-        console.log("Email sent successfully");
-        res.status(200).send({ message: "Confirmation email sent successfully!" });
-      } catch (error) {
+    let updatedBookingDetails = bookingDetails.find(x => x._id == id);
+
+    // Convert UTC date to Helsinki time before sending the email
+    const formattedDate = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("ddd MMM DD YYYY");
+    const formattedTime = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("HH:mm");
+
+    await transporter.sendMail({
+        from: process.env.EMAIL_USER, // This should match the authorized email
+        to: formData.email,
+        subject: `Booking confirmation at ${formattedDate} ${formattedTime}`,
+        html: `
+        <p>Hello ${updatedBookingDetails.name},</p>
+    <p>Thank you for booking a test drive with us! Here are the details of your appointment:</p>
+    <p><strong>Date:</strong> ${formattedDate}</p>
+    <p><strong>Time:</strong> ${formattedTime}</p>
+    <p><strong>Car Model:</strong>${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}</p> 
+    <p>Please arrive 15 minutes early with your driver’s license and any other required documents. If you need to cancel your appointment, please contact us at +3584750000.</p>
+    <p>We look forward to seeing you and hope you enjoy driving the ${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}!</p>
+    <p>Best regards,</p>
+    <p>XYZ</p>
+        `,
+    });
+
+    console.log("Email sent successfully");
+    res.status(200).send({ message: "Confirmation email sent successfully!" });
+    } catch (error) {
         console.error("Failed to send confirmation email:", error);
         res.status(500).send({ message: "Failed to send confirmation email." });
-      }
-    });
+    }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
