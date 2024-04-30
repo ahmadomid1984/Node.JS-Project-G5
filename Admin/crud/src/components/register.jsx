@@ -32,6 +32,7 @@ function Register() {
     })
     .then(result => {
       console.log(result);
+      alert("Registration successful. You are now registered!");
       navigate('/login');
     })
     .catch(err => {
