@@ -207,26 +207,79 @@ app.delete("/booking/:id", async (req, res) => {
 
 // API to confirm a booking and send email with local time
 app.post('/api/confirm-booking', async (req, res) => {
-    const { formData } = req.body;
+    const { formData, id, isBooked } = req.body;
     if (!formData || !formData.email) {
         console.error('Invalid input received');
         return res.status(400).send({ message: 'Invalid booking details provided.' });
     }
 
     try {
+        booking
+          .findByIdAndUpdate(
+            { _id: id },
+            {
+              $set: {
+                car_id: formData.car_id,
+                name: formData.name,
+                email: formData.email,
+                phoneNumber: formData.phoneNumber,
+                date: formData.date,
+                time: formData.time,
+                isBooked: isBooked,
+              },
+            },
+            { new: true }
+          )
+          .then(() => {})
+          .catch((err) => res.status(400).json("Error: " + err));
+    
+    
+        const bookingDetails = await booking.aggregate([
+            {
+              $lookup: {
+                from: "cars",
+                localField: "car_id",
+                foreignField: "cars_id",
+                as: "car",
+              },
+            },
+            {
+              $match: {
+                car: { $ne: [] },
+              },
+            },
+          ]);
+    
+        let updatedBookingDetails = bookingDetails.find(x => x._id == id);
+    
+        // Convert UTC date to Helsinki time before sending the email
+        const formattedDate = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("ddd MMM DD YYYY");
+        const formattedTime = moment.utc(updatedBookingDetails.date).tz("Europe/Helsinki").format("HH:mm");
+    
         await transporter.sendMail({
-            from: process.env.EMAIL_USER, 
-            to: formData.email,
-            subject: 'Booking Confirmation',
-            text: `Your booking has been confirmed!`
+          from: process.env.EMAIL_USER, // This should match the authorized email
+          to: formData.email,
+          subject: `Booking confirmation at ${formattedDate} ${formattedTime}`,
+          html: `
+          <p>Hello ${updatedBookingDetails.name},</p>
+      <p>Thank you for booking a test drive with us! Here are the details of your appointment:</p>
+      <p><strong>Date:</strong> ${formattedDate}</p>
+      <p><strong>Time:</strong> ${formattedTime}</p>
+      <p><strong>Car Model:</strong>${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}</p> 
+      <p>Please arrive 15 minutes early with your driver’s license and any other required documents. If you need to delete your appointment, please contact us at [Contact Information].</p>
+      <p>We look forward to seeing you and hope you enjoy driving the ${updatedBookingDetails.car[0].brand} ${updatedBookingDetails.car[0].car_name}!</p>
+      <p>Best regards,</p>
+      <p>XYZ</p>
+          `,
         });
-        console.log('Email sent successfully');
-        res.status(200).send({ message: 'Confirmation email sent successfully!' });
-    } catch (error) {
-        console.error('Failed to send confirmation email:', error);
-        res.status(500).send({ message: 'Failed to send confirmation email.' });
-    }
-});
+    
+        console.log("Email sent successfully");
+        res.status(200).send({ message: "Confirmation email sent successfully!" });
+      } catch (error) {
+        console.error("Failed to send confirmation email:", error);
+        res.status(500).send({ message: "Failed to send confirmation email." });
+      }
+    });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
