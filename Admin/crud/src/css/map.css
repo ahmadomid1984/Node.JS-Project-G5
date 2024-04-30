@@ -1,32 +1,26 @@
 .body-content {
-    background-color: #46333d;
+    background-color: #cfcecf;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 5rem;
+    align-items: center;
+}
+.body-content p{
+    display: flex !important;
+    justify-content: center !important;
+    font-size: 1.2rem;
+    color: rgb(61, 61, 61);
 }
 
 .map-and-address iframe {
-    width: 80%;
+    width: 90%;
     height: 450px;
-    border: 2px solid #ccc; 
+    border: 2px solid #bebdbd; 
     border-radius: 8px; 
     margin-top: 2rem;
 }
-
-.contact-info .companyContent,
-.contact-info .phone,
-.contact-info .email,
-.contact-info .workHours, 
-.contact-info .new-address {
-    font-size: 1.2rem;
-    color: white;
-    text-align: left;
-}
-
-.contact-info .company,
-.contact-info .contactUs {
+.body-content span {
+    padding: 10px;
     font-size: 1.5rem;
-    color: rgb(239, 164, 89);
-    font-weight: bold;
-    text-align: left;
+    color: black;
 }
 

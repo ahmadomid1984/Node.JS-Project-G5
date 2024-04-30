@@ -1,3 +1,6 @@
+body {
+  background: #d3d3d3 ;
+}
 .bookingForm {
   text-align: center;
   font-size: 3rem;
@@ -16,13 +19,23 @@
   border: 3px solid #767676;
 }
 
+.table-form .btn {
+  background-color: #251a1a;
+  border: 1.5px solid #0a0707 !important;
+}
+
+.table-form .btn:hover {
+  background-color: #342525; 
+  border: 1.5px solid #342525 !important;
+}
+
 /* Input and select box styling */
 .table-form input,
 .table-form select {
   width: 100%;
   padding: 12px;
   margin-bottom: 18px;
-  border: 2px solid #e1e1e1;
+  border: 2px solid #cfcdcd;
   border-radius: 8px;
   transition: border-color 0.3s;
 }

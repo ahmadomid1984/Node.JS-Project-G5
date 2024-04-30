@@ -115,7 +115,7 @@
 
 .carGrid button {
     padding: 4px 40px;
-    background-color: rgba(63, 53, 48, 0.832);
+    background-color: #251a1a;
     color: rgba(255, 255, 255, 0.506);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1rem;
@@ -138,7 +138,7 @@
     }
 
 .carGrid button:hover, button:focus {
-    background-color: #053971; 
+    background-color: #342525; 
     border-color: #004080;
     color: #ffffff;
     transform: translateY(-2px); /* Slight lift effect on hover */

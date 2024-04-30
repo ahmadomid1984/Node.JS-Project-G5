@@ -31,7 +31,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="contactForm">
       <h2>Send Us A Message</h2>
       {statusMessage && (
         <Alert variant={isError ? "danger" : "success"}>

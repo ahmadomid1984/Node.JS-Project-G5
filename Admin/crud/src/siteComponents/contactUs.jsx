@@ -23,17 +23,17 @@ const ContactUs = () => {
               <div className="contact-item">
                 <FontAwesomeIcon icon={faMapMarkerAlt} />
                 <span class="txt1 p-b-20">Address</span>
-                <p>Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US</p>
+                <p>Vankanlähde 9, 13100 Hämeenlinna, Finland</p>
               </div>
               <div className="contact-item">
                 <FontAwesomeIcon icon={faPhone} />
                 <span class="txt1 p-b-20">Lets Talk</span>
-                <p>+358 12 345 6789 </p>
+                <p>+358 475-6789</p>
               </div>
               <div className="contact-item">
                 <FontAwesomeIcon icon={faEnvelope} />
                 <span class="txt1 p-b-20">General support</span>
-                <p>contact@example.com</p>
+                <p>info@example.com</p>
               </div>
             </div>
           </Col>

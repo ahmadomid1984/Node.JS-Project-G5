@@ -4,7 +4,6 @@ form {
 
 .form-control {
   min-height: 55px;
-  border: 1px solid #d1cfcf !important;
   margin-top: 15px;
   padding: 0rem 1rem;
   font-size: 17 px !important;
@@ -22,4 +21,8 @@ form {
   /* flex-wrap: wrap; */
   justify-content: center;
   padding-top: 23px;
+}
+
+.contactForm h2 {
+  color: black !important;
 }

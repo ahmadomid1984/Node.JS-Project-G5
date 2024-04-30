@@ -20,8 +20,8 @@
         transition: color 0.3s ease;
     }
     
-    .navBar-left:hover {
-        color: #FF8E09; /* Change hover color as needed */
+    .navItem:hover {
+        color: #FF8E09 !important; /* Change hover color as needed */
     }
     
     /* Style for active or current page link */
