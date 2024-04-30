@@ -36,12 +36,6 @@ function authenticateToken(req, res, next) {
     });
 }
 
-// Endpoint to verify if the token is still valid
-app.get('/api/verify-token', authenticateToken, (req, res) => {
-    // If the token is valid, the authenticateToken middleware would allow this route to be executed
-    res.status(200).send({ valid: true, id: req.user.id });
-});
-
 
 // Login route
 app.post('/login', (req, res) => {

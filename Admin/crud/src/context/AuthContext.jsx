@@ -10,21 +10,11 @@ export const AuthProvider = ({ children }) => {
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
         if (user && token) {
-            // Verify token validity with an endpoint or local check
-            axios.get('/api/verify-token', { headers: { Authorization: `Bearer ${token}` } })
-                .then(response => {
-                    console.log("Token is valid:", response.data);
-                    setCurrentUser(JSON.parse(user));
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                })
-                .catch(error => {
-                    console.error("Token validation failed:", error);
-                    localStorage.removeItem('user');
-                    localStorage.removeItem('token');
-                    setCurrentUser(null);
-                });
+            console.log("Setting current user and token...");
+            setCurrentUser(JSON.parse(user));
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         }
-    }, []);    
+    }, []);
 
     const login = async (token, userInfo) => {
         localStorage.setItem('user', JSON.stringify(userInfo));
