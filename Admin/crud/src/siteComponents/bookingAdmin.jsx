@@ -37,11 +37,13 @@ function AdminBooking() {
   const handleConfirmBooking = (booking) => {
     axios.post('/api/api/confirm-booking', {
       id: booking._id,
-      formData: booking
+      formData: booking,
+      isBooked: true
     })
     .then(response => {
       alert('Confirmation email sent!');
       console.log('Booking confirmed:', response.data);
+      window.location.reload();
     })
     .catch(error => {
       console.error('Error confirming booking:', error);
@@ -88,8 +90,8 @@ function AdminBooking() {
                 <td>{convertToDate(booking.date)}</td>
                 <td>{convertToTime(booking.date)}</td>
                 <td className="actions">
-                  <button className="btn btn-primary" onClick={() => handleConfirmBooking(booking)}>
-                    Confirm Booking
+                <button className="btn btn-primary ConfirmBtn" disabled={booking.isBooked} onClick={() => handleConfirmBooking(booking)}>
+                  { booking.isBooked ? 'Appointment Booked' : 'Confirm Booking' }
                   </button>
                   <button className="btn btn-danger" onClick={() => handleDelete(booking._id)}>
                     Delete
