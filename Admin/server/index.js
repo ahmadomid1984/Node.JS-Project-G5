@@ -167,8 +167,8 @@ app.post("/contact-us", async (req, res) => {
     const { name, email, message } = req.body;
     try {
         await transporter.sendMail({
-            from: process.env.EMAIL_USER,
-            to: email,
+            from: email,
+            to: process.env.EMAIL_USER,
             subject: "New Form Submission",
             text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
         });
