@@ -17,16 +17,16 @@ function CarDetail() {
     <Container>
       <Row>
         <Row>
-          <Col>
+          <Col className="carImageDetails">
             {" "}
             <img src={`/images/${location.state.car.brand}_${location.state.car.car_name}.jpg`} alt="" className="img-fluid" />
           </Col>
           <Col>
             <div className="details">
-              <h2> {location.state.car.releasedDate} {location.state.car.brand} {location.state.car.car_name}</h2>
+              <h2> {location.state.car.brand} {location.state.car.car_name} ({location.state.car.releasedDate})</h2>
               <p>{location.state.car.description}</p>
               <p>
-                <strong>Price: </strong> € {location.state.car.price}
+                <strong>Price: </strong> {location.state.car.price} €
               </p>
               <p>
                 <strong>Availability:</strong>{" "}
@@ -36,8 +36,7 @@ function CarDetail() {
               </p>
               <button
                 onClick={() => booking(location.state.car.cars_id)}
-                className="btn btn-primary"
-              >
+                className="btn btn-book">
                 BOOK A TEST DRIVE
               </button>
             </div>
