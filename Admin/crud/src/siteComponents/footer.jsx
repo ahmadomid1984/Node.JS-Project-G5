@@ -13,8 +13,8 @@ const Footer = () => {
   return (
     <footer className="siteFooter footer">
       <Container fluid>
-        <Row>
-          <Col xs={12} className="icon-row justify-content-center">
+        <Row className="justify-content-center"> {/* Centering the row content */}
+          <Col xs={12} className="icon-row">
             <div className="icon">
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <FontAwesomeIcon icon={faLinkedin} />

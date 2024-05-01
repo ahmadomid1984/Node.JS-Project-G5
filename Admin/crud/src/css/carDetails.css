@@ -23,6 +23,7 @@ h1{
 h2{
   text-align: left;
   padding: 10px;
+  color: #FF8E09;
 }
 .details p {
   color: white;
@@ -57,4 +58,13 @@ h2{
 
 .details {
   text-align: left;
+}
+
+.carImageDetails {
+  margin-top: 5rem;
+}
+
+.btn-book {
+  font-weight: bold;
+  color: rgb(241, 241, 241);
 }

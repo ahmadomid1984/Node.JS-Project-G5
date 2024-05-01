@@ -54,7 +54,7 @@ function Login() {
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                                 </div>
-                                <button type="submit" className="btn btn-primary w-100">Login</button>
+                                <button type="submit" className="btn btn-success w-100">Login</button>
                             </form>
                             <p className="text-center mt-3">Do not have an account? <Link to="/register">Register</Link></p>
                         </div>

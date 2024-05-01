@@ -56,12 +56,11 @@ function Cars() {
                     <div className="carCard">
                     <img src={`/images/${car.brand}_${car.car_name}.jpg`} alt={`${car.car_name}`} className="carImage" />
                     <div className="carCardContent">
-                        <h4>{car.releasedDate} {car.brand} {car.car_name}</h4>
+                        <h4>{car.brand} {car.car_name} ({car.releasedDate})</h4>
                         <p className="carDetails">{car.summary}</p>
                     </div>
                     <button onClick={() => showCarDetails(car)}>More Info</button>
-                </div>
-                
+                    </div>  
                 ))}
             </div>
         </section>
