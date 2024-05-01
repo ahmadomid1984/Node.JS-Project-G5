@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 2rem;
-    background-color: #251a20;
+    background-color: #000000;
     box-shadow: 0 2px 4px rgba(247, 242, 242, 0.1);
     }
     
@@ -20,8 +20,8 @@
         transition: color 0.3s ease;
     }
     
-    .navBar-left:hover {
-        color: #FF8E09; /* Change hover color as needed */
+    .navItem:hover {
+        color: #FF8E09 !important; /* Change hover color as needed */
     }
     
     /* Style for active or current page link */

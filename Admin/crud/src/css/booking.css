@@ -1,3 +1,6 @@
+body {
+  background: #121212 ;
+}
 .bookingForm {
   text-align: center;
   font-size: 3rem;
@@ -16,21 +19,24 @@
   border: 3px solid #767676;
 }
 
+.table-form .btn {
+  background-color: #251a1a;
+  border: 1.5px solid #0a0707 !important;
+}
+
+.table-form .btn:hover {
+  background-color: #342525; 
+}
+
 /* Input and select box styling */
 .table-form input,
 .table-form select {
   width: 100%;
   padding: 12px;
   margin-bottom: 18px;
-  border: 2px solid #e1e1e1;
+  border: 1px solid black;
   border-radius: 8px;
   transition: border-color 0.3s;
-}
-
-.table-form input:focus,
-.table-form select:focus {
-  border-color: #2972c0;
-  outline: none; /* Removes the default focus outline */
 }
 
 /* Styling labels for better readability */
@@ -61,7 +67,7 @@
 .table-form button {
   width: 100%;
   padding: 12px;
-  color: white;
+  color: black;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -91,8 +97,6 @@
   transition: all 0.3s;
 }
 
-/* Adjusting the color of datepicker months */
-.react-datepicker__current-month,
-.react-datepicker-time__header {
-  color: #9c0505; /* Adjust the color to your preference */
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+  color: black !important;
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/Cars.css';
-
+import '../css/Cars.css'; // Ensure your CSS path is correct
 
 function Cars() {
     const [selectedBrand, setSelectedBrand] = useState(null);
@@ -36,11 +35,10 @@ function Cars() {
         navigate('/car', { state: { car } }); // Navigate to the CarDetail page along with car object
     };
 
-
     return (
         <section className="carSection">
             <div className="carHeader">
-                <img src="/images/header.png" alt="Featured Car" className="carHeaderImage" />
+                <img src="/images/poster3.gif" alt="Featured Car" className="carHeaderImage" />
             </div>
             <div className="carTabs">
                 {brands.map((brand, index) => (
@@ -54,17 +52,16 @@ function Cars() {
                 ))}
             </div>
             <div className="carGrid">
-
                 {cars.filter(item => item.brand === selectedBrand).map(car => (
-                    <div key={car.cars_id} className="carCard">
-                        <img src={`/images/${car.brand}_${car.car_name}.jpg`}
-                        alt={`${car.car_name}`} className="carImage" />
-                        <h4>{car.brand} {car.car_name}</h4>
+                    <div className="carCard">
+                    <img src={`/images/${car.brand}_${car.car_name}.jpg`} alt={`${car.car_name}`} className="carImage" />
+                    <div className="carCardContent">
+                        <h4>{car.releasedDate} {car.brand} {car.car_name}</h4>
                         <p className="carDetails">{car.summary}</p>
-                        <button onClick={() => showCarDetails(car)}>More Info</button>
-
-                
                     </div>
+                    <button onClick={() => showCarDetails(car)}>More Info</button>
+                </div>
+                
                 ))}
             </div>
         </section>

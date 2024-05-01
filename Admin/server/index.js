@@ -68,8 +68,10 @@ app.post('/login', (req, res) => {
         });
 });
 
+
 // Register route
 app.post('/register', async (req, res) => {
+
     const { firstName, lastName, phoneNumber, email, password } = req.body;
     if (!email || !password) {
         return res.status(400).send('Email and password are required.');

@@ -51,8 +51,10 @@ function App() {
         <Route path="/admin/features/:id" element={<ProtectedRoute><Features /></ProtectedRoute>} />
         <Route path="/admin/bookings" element={<ProtectedRoute><AdminBooking /></ProtectedRoute>} />
       </Routes>
+                              
       {!shouldHideNavAndFooter() && <Footer />}
       {!shouldHideNavAndFooter() && <div className="copyRight"> &copy; 2024 Your Company Name</div>}
+
     </div>
   );
 }

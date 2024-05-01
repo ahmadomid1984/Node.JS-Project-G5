@@ -75,7 +75,7 @@ function AdminBooking() {
   };  
 
   return (
-    <div className="d-flex vh-50 bg-primary justify-content-center align-items-center">
+    <div className="justify-content-center align-items-center">
       <div className="w-80 bg-white rounded p-4">
         <h1 className="dashboard-header">Bookings</h1>
         <table className="table">

@@ -82,12 +82,12 @@
 }
 
 .btn-success {
-    background-color: #28a745;
+    background-color: #28a745 !important;
     color: white;
 }
 
 .btn-danger {
-    background-color: #dc3545;
+    background-color: #dc3545 !important;
     color: white;
 }
 
@@ -107,6 +107,10 @@
 }
 
 .btn-info {
-    background-color: rgb(25, 56, 124);
+    background-color: rgb(25, 56, 124) !important;
     color: white;
+}
+
+.btn-secondary {
+    background-color: rgb(89, 89, 89) !important;
 }

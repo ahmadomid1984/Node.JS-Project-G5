@@ -4,17 +4,18 @@ form {
 
 .form-control {
   min-height: 55px;
-  border: 1px solid #d1cfcf !important;
   margin-top: 15px;
   padding: 0rem 1rem;
   font-size: 17 px !important;
   color: #616161 !important;
+  border-color: gray;
 }
 
 .form-label {
   padding: 0px 15px;
   margin-top: 15px;
   margin-bottom: 0;
+  font-size: 1.2rem;
 }
 
 .button-content {
@@ -22,4 +23,18 @@ form {
   /* flex-wrap: wrap; */
   justify-content: center;
   padding-top: 23px;
+}
+
+.btn {
+  background-color: #FF8E09 !important;
+  color: #000000;
+}
+
+.btn:hover {
+  color: #000000;
+}
+
+.contactForm h2 {
+  color: black !important;
+  text-align: center;
 }

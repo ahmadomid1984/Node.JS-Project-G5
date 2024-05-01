@@ -1,6 +1,8 @@
 
 .container {
   margin-top: -50px;
+  color: white;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .img-fluid {
@@ -22,6 +24,18 @@ h2{
   text-align: left;
   padding: 10px;
 }
+.details p {
+  color: white;
+}
+.btn {
+  background-color: #251a1a;
+  border: 1.5px solid #0a0707 !important;
+}
+
+.btn:hover {
+  background-color: #251a1a;
+  border: 1.5px solid #0a0707 !important;
+}
 .features {
   /* Adjust the font size as needed */
   line-height: 1.6; /* Ensures proper spacing between lines */
@@ -33,6 +47,7 @@ h2{
   margin-bottom: 10px; /* Adds space between each paragraph */
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
+  color: white;
 }
 
 .features p strong {

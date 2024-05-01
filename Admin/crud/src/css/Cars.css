@@ -1,12 +1,21 @@
+:root {
+    --car-image-height: 300px;  /* Default height, adjust as needed */
+    --background-color: #121212;  /* Dark background for more contrast */
+    --primary-color: #FF8E09;  /* Bright accent color */
+    --hover-color: #FFA500;  /* Lighter hover state */
+    --text-color: #FFFFFF;  /* White text for readability */
+}
 
 .carSection {
-    background-color: #f1f1f1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: var(--background-color);
+    min-height: 100vh;
 }
 
 .carHeader {
     position: relative;
-    width: 100%; 
-    padding-top: 50%;
+    width: 100%;
+    height: 800px; /* Maintains the height regardless of screen size */
 }
 
 .carHeaderImage {
@@ -20,141 +29,82 @@
 
 .carTabs {
     display: flex;
-    margin-bottom: 1rem;
-    background-color: #251a20;
-    padding: 3rem;
-    padding-left: 15rem;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    overflow-x: auto;
 }
 
 .tabItem {
     padding: 0.5rem 1rem;
-    margin: 0 0.05rem -3rem;
-    border: none;
-    background-color: #46333d;
+    background-color: transparent;
     cursor: pointer;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Arial', sans-serif;
     font-size: 1.2rem;
-    color: lightgray; 
+    color: var(--text-color);
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
-.tabItem.active {
-    border-bottom: 2px solid #FF8E09;
-    background-color: white;
-    font-weight: bold;
-    color: #FF8E09;
+.tabItem.active, .tabItem:hover {
+    color: var(--hover-color);
+    border-bottom-color: var(--primary-color);
 }
-.tabItem:hover {
-    color: #FF8E09; 
-}
-
 
 .carGrid {
-    font-family: Georgia, 'Times New Roman', Times, serif;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 400px)); 
-    justify-content: center; 
-    gap: 1rem; 
-    padding: 1rem;
-}
-
-.carGrid .carDetails {
-    padding: 0 25px 0 25px;
-    text-align: center;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(3, 1fr); /* Four cards per line */
+    gap: 2rem;
+    padding: 2rem;
+    justify-content: center;
 }
 
 .carCard {
-    border: 1px solid #ccc;
-    padding: 0 0 0.5rem 0;
-    background-color: #251a20;
-    color: white;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* This ensures that the button stays at the bottom */
-    width: 100%;
-    border-radius: 5px;
-    text-align: center;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.carImage {
-    width: 100%;
-    height: 250px !important;
-    object-fit: cover;
-}
-
-.carCard h4 {
-    margin: 1.5rem 0;
-}
-
-.carCard p {
-    margin-bottom: 1rem;
+.carCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
 .carCard .carImage {
     width: 100%;
-    height: auto; 
+    height: var(--car-image-height);
     object-fit: cover;
 }
 
 .carCardContent {
-    flex: 1; /* Takes up all available space, pushing the button down */
+    padding: 1rem;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
 }
 
-.carDetails {
-    /* Ensure text takes up the space it needs */
-    margin-bottom: auto; /* Pushes anything after it (like the button) to the bottom */
+.carCard h4 {
+    margin-bottom: 0.5rem;
 }
 
-.carPrice {
-    color: white;
-    font-size: 1.2rem;
-}
-
-.carGrid button {
-    padding: 4px 40px;
-    background-color: rgba(63, 53, 48, 0.832);
-    color: rgba(255, 255, 255, 0.506);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1rem;
-    font-weight: bold;
-    border: 1.5px solid #837c64;
-    border-radius: 30px; 
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    text-align: center;
-    display: inline-block;
-    text-transform: uppercase;
-    text-align: center;
-    display: block; /* Ensures it's on its own line */
-    width: auto; /* Adjust width as necessary */
-    align-self: center; /* Centers button in the flex container if desired */
-    margin-top: auto;
+.carCard p {
+    font-size: 0.9rem;
     margin-bottom: 1rem;
-    }
-
-.carGrid button:hover, button:focus {
-    background-color: #053971; 
-    border-color: #004080;
-    color: #ffffff;
-    transform: translateY(-2px); /* Slight lift effect on hover */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.carGrid button:active {
-    background-color: #004080; /* Even darker on click */
-    transform: translateY(0); /* Reset the position on click */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Less shadow on click */
+.carCard button {
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
 }
 
-
-/* Additional responsive styling if necessary */
-@media (max-width: 768px) {
-    .carGrid {
-    grid-template-columns: repeat(2, 1fr);
-    }
+.carCard button:hover {
+    background-color: var(--hover-color);
 }

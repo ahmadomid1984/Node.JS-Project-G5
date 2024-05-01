@@ -53,8 +53,8 @@ function AdminDashboard() {
                 <h1 className="dashboard-header">Admin Dashboard</h1>
                 <div className="mb-2">
                     <Link to="/admin/create" className="btn btn-success me-2">Add +</Link>
-                    <Link to="/admin/bookings" className="btn btn-info">Bookings</Link>
-                    <button onClick={handleLogout} className="btn btn-primary ms-2">Logout</button>
+                    <Link to="/admin/bookings" className="btn btn-warning">Bookings</Link>
+                    <button onClick={handleLogout} className="btn btn-secondary ms-2">Logout</button>
                 </div>
                 <table className="table">
                     <thead>

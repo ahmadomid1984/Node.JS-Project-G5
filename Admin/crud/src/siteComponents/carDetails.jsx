@@ -38,7 +38,7 @@ function CarDetail() {
                 onClick={() => booking(location.state.car.cars_id)}
                 className="btn btn-primary"
               >
-                Book a test drive
+                BOOK A TEST DRIVE
               </button>
             </div>
           </Col>

@@ -1,0 +1,13 @@
+.loginContainer {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 3rem;
+}
+
+.text-center {
+    text-align: center !important;
+    color: black;
+}
+
+.mt-3 {
+    margin-top: 1rem !important;
+}
