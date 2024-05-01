@@ -20,7 +20,7 @@ h1{
   padding: 20px;
   text-align: left;
 }
-h2{
+.details h2{
   text-align: left;
   padding: 10px;
   color: #FF8E09;
@@ -49,6 +49,12 @@ h2{
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
   color: white;
+}
+
+.features h2 {
+  text-align: left;
+  padding: 10px;
+  color: #FF8E09;
 }
 
 .features p strong {
