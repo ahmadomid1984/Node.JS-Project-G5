@@ -1,0 +1,102 @@
+body {
+  background: #121212 ;
+}
+.bookingForm {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+.table-form {
+  width: 90%;
+  max-width: 620px;
+  margin: 100px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border: 3px solid #767676;
+}
+
+.table-form .btn {
+  background-color: #251a1a;
+  border: 1.5px solid #0a0707 !important;
+}
+
+.table-form .btn:hover {
+  background-color: #342525; 
+}
+
+/* Input and select box styling */
+.table-form input,
+.table-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid black;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+/* Styling labels for better readability */
+.table-form label {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333333;
+}
+
+/* Enhancing the date picker integration */
+.table-form .react-datepicker-wrapper {
+  width: 50%;
+}
+
+/* Time selector styling for better layout */
+.time-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0;
+  margin-bottom: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button enhancements for interaction */
+.table-form button {
+  width: 100%;
+  padding: 12px;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Modal styling for confirmation dialog */
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 20px;
+}
+
+.modal-title {
+  font-size: 20px;
+}
+
+/* Footer button styling in modal */
+.modal-footer button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  transition: all 0.3s;
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+  color: black !important;
+}

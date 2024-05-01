@@ -1,0 +1,73 @@
+.about-us-page {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #121212;
+}
+
+.about-us-page .aboutUsHeader {
+    padding-top: 20px; /* Adjust spacing to control the distance below the navbar */
+    padding-bottom: 20px;
+    }
+
+
+.about-us-page .aboutUsHeader h1 {
+    color: #FF8E09;
+    font-size: 2.50rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    margin-top: 60px;
+    }
+
+
+.aboutUsHeader p {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 0 200px 0 200px;
+    margin-bottom: 30px;
+}
+
+.team {
+    margin-top: 60px;
+}
+
+.team h2 {
+    color: #FF8E09;
+    font-size: 2.50rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.teamMembers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.teamMember {
+    max-width: 300px;
+    text-align: center;
+    margin: 10px;
+}
+
+.teamMember img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+}
+
+.teamMember h3 {
+    margin-top: 10px;
+    color: #FF8E09;
+}
+
+.teamMember p {
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.missionBanner img {
+    width: 100%;  
+    height: auto; 
+    display: block;
+}

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
+import "../css/register.css";
+
 function Register() {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -21,7 +23,7 @@ function Register() {
       alert("Passwords do not match");
       return;
     }
-    axios.post('http://localhost:5000/register', {
+    axios.post('/api/register', {
       firstName, 
       lastName, 
       phoneNumber, 
@@ -31,6 +33,7 @@ function Register() {
     })
     .then(result => {
       console.log(result);
+      alert("Registration successful. You are now registered!");
       navigate('/login');
     })
     .catch(err => {
@@ -40,9 +43,9 @@ function Register() {
     });
   }
   return (  
-    <div className="container">
+    <div className="registerContainer">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="card mt-5">
             <div className="card-body">
               <h2 className="card-title text-center">Register</h2>
@@ -71,10 +74,10 @@ function Register() {
                   <label htmlFor="confirmPassword" className="form-label"><strong>Confirm Password</strong></label>
                   <input type="password"  className="form-control" id="confirmPassword" onChange={(e)=>setConfirmPassword(e.target.value)}/>
                 </div>
-                <button type="submit" className="btn btn-primary w-100">Register</button>
+                <button type="submit" className="btn btn-default w-100">Register</button>
               </form>
               <p className="text-center mt-3">Already have an account? </p>
-              <Link to="/login" className='btn btn-default border w-100 bg-light round-0 text-center'>Login</Link>
+              <Link to="/login" className='btn btn-primary w-100'>Login</Link>
             </div>
           </div>
         </div>
