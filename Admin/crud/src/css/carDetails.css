@@ -1,7 +1,8 @@
 
 .container {
   margin-top: -50px;
-  color: black;
+  color: white;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .img-fluid {
@@ -24,7 +25,7 @@ h2{
   padding: 10px;
 }
 .details p {
-  color: #0a0a0a;
+  color: white;
 }
 .btn {
   background-color: #251a1a;
@@ -46,7 +47,7 @@ h2{
   margin-bottom: 10px; /* Adds space between each paragraph */
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
-  color: black;
+  color: white;
 }
 
 .features p strong {

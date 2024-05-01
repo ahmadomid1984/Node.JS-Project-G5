@@ -49,7 +49,7 @@ function App() {
         <Route path="/admin/bookings" element={<ProtectedRoute><AdminBooking /></ProtectedRoute>} />
       </Routes>
       {!isAdminRoute && <Footer />}
-      {!isAdminRoute && <div className="copyRight"> &copy; 2024 Your Company Name</div>}
+      {!isAdminRoute && <div className="copyRight"> &copy; 2024 Group 5 - Hamk University</div>}
     </div>
   );
 }

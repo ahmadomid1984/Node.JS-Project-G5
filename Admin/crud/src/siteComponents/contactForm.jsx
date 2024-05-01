@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import axios from 'axios';
+import '../css/contactForm.css';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -66,7 +67,7 @@ const ContactForm = () => {
         />
       </Form.Group>
       <div className="button-content">
-        <Button type="submit" variant="secondary">Send Message</Button>
+        <Button type="submit">Send Message</Button>
       </div>
     </Form>
   );

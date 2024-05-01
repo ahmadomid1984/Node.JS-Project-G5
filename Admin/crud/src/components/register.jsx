@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
+import "../css/register.css";
 
 function Register() {
   const [firstName, setFirstName] = useState();
@@ -73,10 +74,10 @@ function Register() {
                   <label htmlFor="confirmPassword" className="form-label"><strong>Confirm Password</strong></label>
                   <input type="password"  className="form-control" id="confirmPassword" onChange={(e)=>setConfirmPassword(e.target.value)}/>
                 </div>
-                <button type="submit" className="btn btn-primary w-100">Register</button>
+                <button type="submit" className="btn btn-default w-100">Register</button>
               </form>
               <p className="text-center mt-3">Already have an account? </p>
-              <Link to="/login" className='btn btn-default border w-50 bg-light round-0 text-center'>Login</Link>
+              <Link to="/login" className='btn btn-primary w-100'>Login</Link>
             </div>
           </div>
         </div>

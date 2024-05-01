@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMapMarkerAlt,
+    faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import '../css/map.css';
 
@@ -12,7 +12,6 @@ const Map = () => {
                 <Col xs={12} md={4} className="contact-info">
                 <div>
                 <div className="contact-item">
-                    <FontAwesomeIcon  icon={faMapMarkerAlt} />
                     <span class="txt1 p-b-20">Address</span>
                     <p>Vankanlähde 9, 13100 Hämeenlinna, Finland</p>
                 </div>

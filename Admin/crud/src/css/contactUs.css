@@ -8,10 +8,11 @@
   margin-bottom: -100px;
 }
 
+
 .contact-us-page .top-text .text {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: black ;
-  font-size: 2rem;
+  color: ffffff ;
+  font-size: 2rem !important;
   padding: 1rem;
   max-width: 65%;
   text-align: center;
@@ -58,9 +59,9 @@ body:before {
 
 p {
   padding-top: 15px;
-  font-size: 15px;
+  font-size: 22px;
   line-height: 1.6;
-  color: #bebaba;
+  color: #ffffff;
 
 }
 
