@@ -57,7 +57,7 @@ h1{
   color: #FF8E09;
 }
 
-.features p strong {
+.features p {
     font-weight: bold; /* Makes the label bold */
     font-size: 1rem;
 }
