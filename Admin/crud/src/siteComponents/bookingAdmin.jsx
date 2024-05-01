@@ -9,7 +9,7 @@ function AdminBooking() {
   useEffect(() => {
     axios.get("/api/admin/booking")
       .then(response => {
-        console.log("Bookings fetched:", response.data);  // Log the fetched data
+        console.log("Bookings fetched:", response.data);
         if (Array.isArray(response.data)) {
           setBookings(response.data);
         } else {
@@ -43,14 +43,24 @@ function AdminBooking() {
     .then(response => {
       alert('Confirmation email sent!');
       console.log('Booking confirmed:', response.data);
-      window.location.reload();
+      updateBookingUI(booking._id, response.data); // Update the UI here
     })
     .catch(error => {
       console.error('Error confirming booking:', error);
       alert('Error confirming booking.');
     });
   };
-
+  
+  function updateBookingUI(bookingId, bookingData) {
+    // Update the state with the new booking data
+    setBookings(currentBookings => currentBookings.map(b => {
+      if (b._id === bookingId) {
+        return { ...b, ...bookingData, isBooked: true }; // Merge updated data and mark as booked
+      }
+      return b;
+    }));
+  }
+  
   const convertToDate = (dateString) => {
     const date = new Date(dateString);
     return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
@@ -58,10 +68,10 @@ function AdminBooking() {
 
   const convertToTime = (dateString) => {
     const date = new Date(dateString);
-    let hours = date.getHours(); // get hours directly in 24-hour format
+    let hours = date.getHours();
     let minutes = date.getMinutes();
-    minutes = minutes < 10 ? "0" + minutes : minutes; // pad single-digit minutes with a leading zero
-    return hours + ":" + minutes; // return the time in 24-hour format
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    return hours + ":" + minutes;
   };  
 
   return (
@@ -90,8 +100,8 @@ function AdminBooking() {
                 <td>{convertToDate(booking.date)}</td>
                 <td>{convertToTime(booking.date)}</td>
                 <td className="actions">
-                <button className="btn btn-primary ConfirmBtn" disabled={booking.isBooked} onClick={() => handleConfirmBooking(booking)}>
-                  { booking.isBooked ? 'Appointment Booked' : 'Confirm Booking' }
+                  <button className="btn btn-primary ConfirmBtn" disabled={booking.isBooked} onClick={() => handleConfirmBooking(booking)}>
+                    { booking.isBooked ? 'Appointment Booked' : 'Confirm Booking' }
                   </button>
                   <button className="btn btn-danger" onClick={() => handleDelete(booking._id)}>
                     Delete
@@ -101,7 +111,6 @@ function AdminBooking() {
             ))}
           </tbody>
         </table>
-        {/* Button to go back to the Admin Dashboard */}
         <div className="mt-4">
           <Link to="/admin" className="btn btn-secondary">
             Back to Admin Dashboard

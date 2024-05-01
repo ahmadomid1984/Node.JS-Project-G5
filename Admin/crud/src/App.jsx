@@ -24,12 +24,15 @@ import ProtectedRoute from './context/ProtectedRoute';
 function App() {
   const location = useLocation();
   
-  // Function to check if the current location is an admin path
-  const isAdminRoute = location.pathname.startsWith('/admin');
+  // Function to check if the current location should not show NavBar and Footer
+  const shouldHideNavAndFooter = () => {
+    const noNavFooterRoutes = ['/login', '/register', '/admin'];
+    return noNavFooterRoutes.some(route => location.pathname.startsWith(route));
+  };
 
   return (
     <div className="App">
-      {!isAdminRoute && <NavBar />}
+      {!shouldHideNavAndFooter() && <NavBar />}
       <Routes>
         {/* Main site routes */}
         <Route path="/" element={<Home />} />
@@ -48,8 +51,10 @@ function App() {
         <Route path="/admin/features/:id" element={<ProtectedRoute><Features /></ProtectedRoute>} />
         <Route path="/admin/bookings" element={<ProtectedRoute><AdminBooking /></ProtectedRoute>} />
       </Routes>
-      {!isAdminRoute && <Footer />}
-      {!isAdminRoute && <div className="copyRight"> &copy; 2024 Group 5 - Hamk University</div>}
+                              
+      {!shouldHideNavAndFooter() && <Footer />}
+      {!shouldHideNavAndFooter() && <div className="copyRight"> &copy; 2024 Your Company Name</div>}
+
     </div>
   );
 }

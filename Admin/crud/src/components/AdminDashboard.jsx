@@ -21,15 +21,20 @@ function AdminDashboard() {
     }, []);
 
     const handleDelete = (id) => {
-        axios.delete(`/api/deleteCar/` + id)
-            .then(response => {
-                console.log(response.data);
-                window.location.reload();
-            })
-            .catch(err => {
-                console.error('Error:', err);
-            });
-    };
+        if (window.confirm("Are you sure you want to delete this car?")) {
+            axios.delete(`/api/deleteCar/` + id)
+                .then(response => {
+                    console.log('Deleted successfully:', response.data);
+                    // Update state to remove the car from the list
+                    setCars(currentCars => currentCars.filter(car => car._id !== id));
+                    alert('Car deleted successfully.');
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                    alert('Failed to delete the car. Please try again.');
+                });
+        }
+    };        
 
     const handleLogout = () => {
         // Assuming you're using local storage to manage the login state

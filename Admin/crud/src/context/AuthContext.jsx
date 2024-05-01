@@ -9,10 +9,9 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const user = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        if (user) {
+        if (user && token) {
+            console.log("Setting current user and token...");
             setCurrentUser(JSON.parse(user));
-        }
-        if (token) {
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         }
     }, []);
@@ -44,7 +43,7 @@ export const useAuth = () => {
     const context = useContext(AuthContext);
     if (context === undefined) {
         throw new Error('useAuth must be used within an AuthProvider');
-        }
+    }
     
-        return context;
-    };
+    return context;
+};

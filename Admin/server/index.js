@@ -25,79 +25,96 @@ mongoose.connect(dbURI)
     .catch(err => console.log("Database connection error:", err));
 
 
-// Function to verify JWT
+// Middleware to verify JWT
 function authenticateToken(req, res, next) {
-    const token = req.headers['authorization']?.split(' ')[1]; // Authorization: Bearer TOKEN
-    if (!token) return res.sendStatus(401);
-
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (!token) return res.status(401).send('Access token is required');
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403);
+        if (err) return res.status(403).send('Invalid token');
         req.user = user;
         next();
     });
 }
 
-// Login Area
+
+// Login route
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
-    AdminsInfoModel.findOne({ email: email })
+    const normalizedEmail = email.toLowerCase(); // Normalize email to lowercase
+
+    // Find user by email
+    AdminsInfoModel.findOne({ email: normalizedEmail })
         .then(user => {
-            if (user) {
-                console.log("Expected password:", user.password, "Received password:", password);
-                if (user.password === password) { // Add hashing comparison here if necessary
-                    res.json("success");
-                } else {
-                    res.json("wrong password");
-                }
-            } else {
-                res.json("user not found");
+            if (!user) {
+                return res.status(404).send("User not found");
             }
-        }).catch(err => {
-            console.error("Login error:", err);
-            res.status(500).json("Server error");
+            // Compare hashed password with password provided during login
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) {
+                    console.error(err); // Log error for debugging
+                    return res.status(500).send("Server error");
+                }
+                if (!isMatch) {
+                    return res.status(401).send("Wrong email or password");
+                }
+                // Generate and send JWT token if passwords match
+                const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                res.json({ token });
+            });
+        })
+        .catch(err => {
+            console.error(err); // Log error for debugging
+            res.status(500).send("Server error");
         });
 });
 
 
-// Register Area
-app.post('/register', (req, res) => {
+// Register route
+app.post('/register', async (req, res) => {
+
     const { firstName, lastName, phoneNumber, email, password } = req.body;
-    if (!email || !password) { // Basic validation
-        return res.status(400).json('Email and password are required.');
+    if (!email || !password) {
+        return res.status(400).send('Email and password are required.');
     }
-    // Assuming AdminsInfoModel handles the registration logic:
-    AdminsInfoModel.create({
-        firstName,
-        lastName,
-        phoneNumber,
-        email,
-        password
-    })
-    .then(user => res.status(201).json(user))
-    .catch(err => {
-        console.error(err);
-        res.status(500).json('Registration failed. Please try again.');
-    });
+
+    try {
+        const normalizedEmail = email.toLowerCase(); // Normalize email to lowercase
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = await AdminsInfoModel.create({
+            firstName,
+            lastName,
+            phoneNumber,
+            email: normalizedEmail, // Save normalized email to the database
+            password: hashedPassword
+        });
+
+
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({ user: newUser, token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Registration failed. Please try again.');
+    }
 });
 
-
-// Use Mongoose to fetch all cars
+// Fetch all cars
 app.get("/cars", (req, res) => {
     CarModel.find()  
     .then(cars => res.json(cars))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => res.status(400).send('Error: ' + err));
 });
 
-// Get the car data by ID in order to update 
-app.get("/getCar/:id", (req, res) => {
+// Fetch a car by ID
+app.get("/getCar/:id", authenticateToken, (req, res) => {
     const id = req.params.id;
-    CarModel.findById({_id:id}) 
+    CarModel.findById(id)
     .then(car => res.json(car))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => res.status(400).send('Error: ' + err));
 });
 
 // Update the car data
-app.put("/updateCar/:id", (req, res) => {
+app.put("/updateCar/:id", authenticateToken,(req, res) => {
     const id = req.params.id;
     CarModel.findByIdAndUpdate(
         {_id: id}, 
@@ -118,19 +135,19 @@ app.put("/updateCar/:id", (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// Delete the car data
-app.delete("/deleteCar/:id", (req, res) => {
+// Delete a car
+app.delete("/deleteCar/:id", authenticateToken, (req, res) => {
     const id = req.params.id;
-    CarModel.findByIdAndDelete({_id:id})
-    .then(cars => res.json(cars))
-    .catch(err => res.status(400).json('Error: ' + err));
+    CarModel.findByIdAndDelete(id)
+    .then(result => res.json(result))
+    .catch(err => res.status(400).send('Error: ' + err));
 });
 
-// Create a new car data
-app.post("/CreateCar", (req, res) => {
+// Create a new car
+app.post("/CreateCar", authenticateToken, (req, res) => {
     CarModel.create(req.body)
-    .then(cars => res.json(cars))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .then(car => res.json(car))
+    .catch(err => res.status(400).send('Error: ' + err));
 });
 
 // Setup Nodemailer transporter
