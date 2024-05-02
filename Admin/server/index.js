@@ -91,6 +91,7 @@ app.post('/register', async (req, res) => {
 
 
         const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        console.log("Token:", token); // Log the token
         res.status(201).json({ user: newUser, token });
     } catch (error) {
         console.error(error);
