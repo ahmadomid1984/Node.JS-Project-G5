@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/Cars.css'; // Ensure your CSS path is correct
 
-const baseURL = 'https://node-js-project-g5-kohl.vercel.app/';
 
 function Cars() {
     const [selectedBrand, setSelectedBrand] = useState(null);
@@ -11,7 +10,7 @@ function Cars() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`${baseURL}/api/cars`)
+        fetch('https://node-js-project-g5-kohl.vercel.app/api/cars')
             .then(response => response.json())
             .then(data => {
                 setCars(data);
