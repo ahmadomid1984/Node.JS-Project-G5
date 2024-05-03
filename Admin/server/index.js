@@ -22,7 +22,7 @@ app.use (cors(
         methods: ['POST', 'GET'],
         credentials: true
     }
-))
+));
 app.use(express.json());
 
 const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@${process.env.CLUSTOR}.mongodb.net/${process.env.DB}?retryWrites=true&w=majority&appName=Cluster0`;
