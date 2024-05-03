@@ -1,3 +1,10 @@
 {
-    "buildCommand": "next build"
+    "version": 2,
+    "buildCommand": "next build",
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]   
 }
