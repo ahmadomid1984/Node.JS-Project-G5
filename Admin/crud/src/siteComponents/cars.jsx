@@ -10,7 +10,7 @@ function Cars() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('https://node-js-project-g5.onrender.com/cars')
+        fetch('https://node-js-project-g5.onrender.com/api/cars')
             .then(response => response.json())
             .then(data => {
                 setCars(data);
