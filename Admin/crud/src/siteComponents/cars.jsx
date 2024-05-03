@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/Cars.css'; // Ensure your CSS path is correct
 
+
 function Cars() {
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [cars, setCars] = useState([]);
