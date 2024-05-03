@@ -13,16 +13,11 @@ const nodemailer = require("nodemailer");
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: ['http://localhost:5173', 'https://frontend-five-bay-25.vercel.app'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
-app.use (cors(
-    {
-        origin: ['https://frontend-five-bay-25.vercel.app'],
-        methods: ['POST', 'GET'],
-        credentials: true
-    }
-));
 app.use(express.json());
 
 const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@${process.env.CLUSTOR}.mongodb.net/${process.env.DB}?retryWrites=true&w=majority&appName=Cluster0`;
