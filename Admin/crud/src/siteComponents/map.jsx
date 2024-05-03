@@ -8,20 +8,20 @@ import '../css/map.css';
 
 const Map = () => {
     return (
-            <Row className="body-content">
-                <Col xs={12} md={4} className="contact-info">
-                <div>
-                <div className="contact-item">
-                    <span class="txt1 p-b-20">Address</span>
-                    <p>Vankanlähde 9, 13100 Hämeenlinna, Finland</p>
-                </div>
-                <div>
-                <span class="txt1 p-b-20">Work Hours</span>
-                    <p> Mon-Fri 09:00 - 17:00</p>
-                </div>
-                </div>
-                </Col>
-                <Col xs={12} md={8} className="map-and-address">
+        <Row className="body-content">
+            <Col xs={12} md={4} className="contact-info">
+                <section aria-label="Contact Information">
+                    <div className="contact-item">
+                        <span className="txt1 p-b-20">Address</span>
+                        <p>Vankanlähde 9, 13100 Hämeenlinna, Finland</p>
+                    </div>
+                    <div className="contact-item">
+                        <span className="txt1 p-b-20">Work Hours</span>
+                        <p>Mon-Fri 09:00 - 17:00</p>
+                    </div>
+                </section>
+            </Col>
+            <Col xs={12} md={8} className="map-and-address">
                 <iframe
                     title="Google Map"
                     aria-label="Location map showing Vankanlähde 9, 13100 Hämeenlinna, Finland"
@@ -30,10 +30,9 @@ const Map = () => {
                     allowFullScreen
                     loading="lazy"
                 ></iframe>
-                </Col>
-            </Row>
-        );
-    };
-
+            </Col>
+        </Row>
+    );
+};
 
 export default Map;

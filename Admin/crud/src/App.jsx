@@ -53,7 +53,7 @@ function App() {
       </Routes>
                               
       {!shouldHideNavAndFooter() && <Footer />}
-      {!shouldHideNavAndFooter() && <div className="copyRight"> &copy; 2024 Your Company Name</div>}
+      {!shouldHideNavAndFooter() && <div className="copyRight" role="complementary">&copy; 2024 Your Company Name</div>}
 
     </div>
   );

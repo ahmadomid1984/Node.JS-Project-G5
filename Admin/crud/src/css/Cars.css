@@ -91,9 +91,11 @@
     flex-grow: 1;  /* Allows content to expand */
 }
 
-.carCard h4 {
+.carCard h1 {
     margin-bottom: 0.5rem;
     font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
 }
 
 .carCard p {
