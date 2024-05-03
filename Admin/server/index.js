@@ -100,14 +100,14 @@ app.post('/register', async (req, res) => {
 });
 
 // Fetch all cars
-app.get("/cars", (req, res) => {
+app.get("/", (req, res) => {
     CarModel.find()  
     .then(cars => res.json(cars))
     .catch(err => res.status(400).send('Error: ' + err));
 });
 
 // Fetch a car by ID
-app.get("/getCar/:id", (req, res) => {
+app.get("/getCar/:id", authenticateToken, (req, res) => {
     const id = req.params.id;
     CarModel.findById(id)
     .then(car => res.json(car))
