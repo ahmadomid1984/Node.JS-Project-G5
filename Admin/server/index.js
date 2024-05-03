@@ -107,7 +107,7 @@ app.get("/cars", (req, res) => {
 });
 
 // Fetch a car by ID
-app.get("/getCar/:id", authenticateToken, (req, res) => {
+app.get("/getCar/:id", (req, res) => {
     const id = req.params.id;
     CarModel.findById(id)
     .then(car => res.json(car))
