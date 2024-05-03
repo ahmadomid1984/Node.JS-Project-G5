@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/Cars.css';
+import '../css/Cars.css'; // Ensure your CSS path is correct
 
-// Add the correct protocol (http or https) depending on your backend setup
-const baseURL = 'https://node-js-project-g5-kohl.vercel.app';
+const baseURL = 'https://node-js-project-g5-kohl.vercel.app/';
 
 function Cars() {
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [cars, setCars] = useState([]);
     const [brands, setBrands] = useState([]);
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
-        setLoading(true);
         fetch(`${baseURL}/api/cars`)
             .then(response => response.json())
             .then(data => {
@@ -24,10 +20,6 @@ function Cars() {
             })
             .catch(error => {
                 console.error("Error fetching cars:", error);
-                setError("Failed to fetch cars. Please try again later.");
-            })
-            .finally(() => {
-                setLoading(false);
             });
     }, []);
 
@@ -44,9 +36,6 @@ function Cars() {
     const showCarDetails = (car) => {
         navigate('/car', { state: { car } }); // Navigate to the CarDetail page along with car object
     };
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
 
     return (
         <section className="carSection">
