@@ -38,13 +38,16 @@ function Cars() {
     return (
         <section className="carSection">
             <div className="carHeader">
-                <img src="/images/poster3.gif" alt="Featured Car" className="carHeaderImage" />
+                <img src="/images/poster3.gif" alt="" className="carHeaderImage" />
             </div>
-            <div className="carTabs">
+            <div className="carTabs" role="tablist" aria-label="Car Brand Tabs">
                 {brands.map((brand, index) => (
                     <button
+                        role='tab'
                         key={index}
                         className={`tabItem ${selectedBrand === brand ? 'active' : ''}`}
+                        aria-selected={selectedBrand === brand}
+                        aria-controls={`panel-${index}`} 
                         onClick={() => selectBrand(brand)}
                     >
                         {brand}
@@ -53,13 +56,13 @@ function Cars() {
             </div>
             <div className="carGrid">
                 {cars.filter(item => item.brand === selectedBrand).map(car => (
-                    <div className="carCard">
-                    <img src={`/images/${car.brand}_${car.car_name}.jpg`} alt={`${car.car_name}`} className="carImage" />
+                    <div className="carCard" >
+                    <img src={`/images/${car.brand}_${car.car_name}.jpg`} alt={`${car.brand} ${car.car_name}`} className="carImage" />
                     <div className="carCardContent">
                         <h4>{car.brand} {car.car_name} ({car.releasedDate})</h4>
                         <p className="carDetails">{car.summary}</p>
                     </div>
-                    <button onClick={() => showCarDetails(car)}>More Info</button>
+                    <button onClick={() => showCarDetails(car)} aria-label={`More Info about ${car.brand} ${car.car_name}`}>More Info</button>
                     </div>  
                 ))}
             </div>

@@ -5,8 +5,8 @@ import '../css/navBar.css';
 function NavBar() {
     return (
         <nav className="navBar">
-            <div className="navBar-left">
-                <Link to="/" className="navItem navItem-active">Home</Link>
+            <div className="navBar-left" >
+                <Link to="/" className="navItem navItem-active" aria-current="page">Home</Link>
                 <Link to="/about-us" className="navItem">About Us</Link>
                 <Link to="/contact-us" className="navItem">Contact Us</Link>
             </div>
