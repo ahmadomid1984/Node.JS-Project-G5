@@ -13,9 +13,7 @@ const nodemailer = require("nodemailer");
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://frontend-five-bay-25.vercel.app'],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
+    origin: 'http://localhost:5173'
 }));
 
 app.use(express.json());
