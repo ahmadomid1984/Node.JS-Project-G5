@@ -100,7 +100,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Fetch all cars
-app.get("/", (req, res) => {
+app.get("/cars", (req, res) => {
     CarModel.find()  
     .then(cars => res.json(cars))
     .catch(err => res.status(400).send('Error: ' + err));
