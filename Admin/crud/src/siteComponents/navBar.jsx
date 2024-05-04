@@ -4,7 +4,7 @@ import '../css/navBar.css';
 
 function NavBar() {
     return (
-        <nav className="navBar" id='mainNavigation' aria-label="Main navigation">
+        <nav className="navBar" id='navbar' aria-label="Main navigation">
             <div className="navBar-left" id='home'>
                 <Link to="/" className="navItem navItem-active" aria-current= "page" aria-label="home">Home</Link>
                 <Link to="/about-us" className="navItem"  id='aboutUs' aria-label="about us">About Us</Link>

@@ -36,7 +36,7 @@ function Cars() {
     };
 
     return (
-        <section className="carSection" id='mainContent' role="main">
+        <section className="carSection" id='cars' role="main">
             <div className="carHeader">
                 <img src="/images/poster3.gif" alt="Car promotion" className="carHeaderImage" />
             </div>
