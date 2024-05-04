@@ -57,7 +57,7 @@ function Cars() {
             <div className="carGrid">
                 {cars.filter(item => item.brand === selectedBrand).map(car => (
                     <div className="carCard" key={car.car_name}>
-                        <img src={`/images/${car.brand}_${car.car_name}.jpg`} alt="" className="carImage" />
+                        <img src={`/images/${car.brand}_${car.car_name}.jpg`} alt={`${car.brand} ${car.car_name} in ${car.color}`} className="carImage" />
                         <div className="carCardContent">
                             <h4>{car.brand} {car.car_name} ({car.releasedDate})</h4>
                             <p className="carDetails">{car.summary}</p>
