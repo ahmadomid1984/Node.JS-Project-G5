@@ -11,7 +11,7 @@ import "../css/footer.css";
 
 const Footer = () => {
   return (
-    <footer className="siteFooter footer">
+    <footer className="siteFooter footer" id="footer">
       <Container fluid>
         <Row className="justify-content-center">
           <Col xs={12} className="icon-row">

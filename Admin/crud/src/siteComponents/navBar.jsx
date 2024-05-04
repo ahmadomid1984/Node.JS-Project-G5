@@ -4,11 +4,11 @@ import '../css/navBar.css';
 
 function NavBar() {
     return (
-        <nav className="navBar" aria-label="Main navigation">
-            <div className="navBar-left">
+        <nav className="navBar" id='Main Navigation' aria-label="Main navigation">
+            <div className="navBar-left" id='home'>
                 <Link to="/" className="navItem navItem-active" aria-current= "page" aria-label="home">Home</Link>
-                <Link to="/about-us" className="navItem" aria-label="about us">About Us</Link>
-                <Link to="/contact-us" className="navItem" aria-label="contact us">Contact Us</Link>
+                <Link to="/about-us" className="navItem"  id='aboutUs' aria-label="about us">About Us</Link>
+                <Link to="/contact-us" className="navItem" id='contactUs' aria-label="contact us">Contact Us</Link>
             </div>
         </nav>
     );

@@ -8,7 +8,7 @@ import '../css/map.css';
 
 const Map = () => {
     return (
-        <Row className="body-content">
+        <Row className="body-content" id='map'>
             <Col xs={12} md={4} className="contact-info">
                 <section aria-label="Contact Information">
                     <div className="contact-item">

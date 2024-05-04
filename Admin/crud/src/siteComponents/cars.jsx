@@ -36,7 +36,7 @@ function Cars() {
     };
 
     return (
-        <section className="carSection" role="main">
+        <section className="carSection" id='mainContent' role="main">
             <div className="carHeader">
                 <img src="/images/poster3.gif" alt="Car promotion" className="carHeaderImage" />
             </div>
@@ -59,10 +59,11 @@ function Cars() {
                     <div className="carCard" key={car.car_name}>
                         <img src={`/images/${car.brand}_${car.car_name}.jpg`} alt="" className="carImage" />
                         <div className="carCardContent">
-                            <h1>{car.brand} {car.car_name} ({car.releasedDate})</h1>
+                            <h4>{car.brand} {car.car_name} ({car.releasedDate})</h4>
                             <p className="carDetails">{car.summary}</p>
                         </div>
-                        <button onClick={() => showCarDetails(car)} aria-label={`More Info about ${car.brand} ${car.car_name}`}>More Info</button>
+                        <button onClick={() => showCarDetails(car)} 
+                        aria-label={`More Info about ${car.brand} ${car.car_name}`}>More Info</button>
                     </div>  
                 ))}
             </div>
